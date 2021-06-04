@@ -4,32 +4,24 @@ using UnityEngine;
 
 public class Destructible : MonoBehaviour
 {
-    private Rigidbody _rigidbody;
-    private BoxCollider _collider;
-    public GameObject powerCoreDestructible;
-    public GameObject grenade;
     public float detonationForce;
     public float detonationRadius;
+
     public GameObject detonationEffect;
-    private GameObject _detonationPosition;
-    private void Awake()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-        _collider = GetComponent<BoxCollider>();
-        _detonationPosition = this.transform.GetChild(0).gameObject;
-    }
+    public GameObject _detonationPosition;
+    public bool onDetonateDestroy;
 
-     private void OnCollisionEnter(Collision collision)
-     {
-        if(collision.collider.tag == "Grenade")
+        public void Detonate()
         {
-            Instantiate(this.powerCoreDestructible, this.transform.position, this.transform.rotation);
-            Invoke(nameof(detonate), 0.0f);
-            Destroy(this.gameObject);
+            OnDetonate();
         }
-     }
 
-      private void detonate()
+        public void Detonate(float delay)
+        {
+            Invoke(nameof(OnDetonate), delay);           
+        }
+
+    protected virtual void OnDetonate()
     {
         Instantiate(detonationEffect, _detonationPosition.transform.position, this.transform.rotation);
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, detonationRadius);
@@ -39,8 +31,14 @@ public class Destructible : MonoBehaviour
             Rigidbody nearByRigidbody = nearByObject.GetComponent<Rigidbody>();
             if(nearByRigidbody != null)
             {
-               nearByRigidbody.AddExplosionForce(detonationForce, _detonationPosition.transform.position, detonationRadius); 
+               nearByRigidbody.AddExplosionForce(this.detonationForce, _detonationPosition.transform.position, detonationRadius, 2.0f, ForceMode.Impulse); 
             }    
         }
+
+        if(this.onDetonateDestroy)
+        {
+            Destroy(this.gameObject);
+        }
     }
+
 }

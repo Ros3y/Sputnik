@@ -2,49 +2,66 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class Shoot : MonoBehaviour
 {
-    public float power;
-    public float initialArcPower;
+    // Inputs
     private Rigidbody _rigidbody;
     public InputAction shootInput;
     public InputAction reloadInput;
+
+    // Gun
+    public GameObject grenadeLauncher;
+    private GameObject _grenadeSpawn;
+
+    // Ammo
+    public GameObject grenadePrefab;
+    public int magazineSize;
+    public int ammoRemaining { get; private set; }
+
+    // Shooting
+    public float power;
+    public float initialArcPower;
+    public float shootCooldown;
+    private float _coolDownTime;
+
+    // Reload
     public float reloadTimer;
     public float reloadDelay;
     private bool _reloadDelayFinished;
     private float _reloadDelayTime;
     private float _dynamicReloadTime;
-    public float shootCooldown;
-    private float _coolDownTime;
-    public int magazineSize;
-    private int _ammoRemaining;
-    public GameObject grenadePrefab;
-    public GameObject grenadeLauncher;
-    private GameObject _grenadeSpawn;
-    private GameObject _muzzleFlashSpawn;
-    public ParticleSystem muzzleFlash;
-    public Text ammoRemaining;
-    public AudioClip reloadSound;
-    private AudioSource _reloadSoundSource;
+
+    // Death Mechanics
     public float onDeathResetDelay;
     private float _onDeathAmmoResetDelay;
     private bool _hasDied;
+
+    // Effects
+    private GameObject _muzzleFlashSpawn;
+    public ParticleSystem muzzleFlash;
+
+    //Audio
+    public AudioClip reloadSound;
+    private AudioSource _audioSource;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _audioSource = GetComponent<AudioSource>();
+
         _reloadDelayFinished = true;
+
         _coolDownTime = 0.0f;
         _reloadDelayTime = 0.0f;
-        _ammoRemaining = this.magazineSize;
+
+        this.ammoRemaining = this.magazineSize;
         _grenadeSpawn = this.grenadeLauncher.transform.GetChild(0).gameObject;
         _muzzleFlashSpawn = this.grenadeLauncher.transform.GetChild(1).gameObject;
-        AudioSource[] allAudioSources = GetComponents<AudioSource>();
-        _reloadSoundSource = allAudioSources[1];
-        _reloadSoundSource.clip = this.reloadSound;
+
         _onDeathAmmoResetDelay = this.onDeathResetDelay;
         _hasDied = false;
+
         this.shootInput.performed += OnShoot;
         this.reloadInput.performed += OnReload;
     }
@@ -67,21 +84,19 @@ public class Shoot : MonoBehaviour
         {
             _coolDownTime -= Time.deltaTime;
         }
-        if(_ammoRemaining <= 0 && !IsInvoking("Reload"))
+        if(this.ammoRemaining <= 0 && !IsInvoking("Reload"))
         {
-            _dynamicReloadTime = Mathf.Lerp(0.0f, this.reloadTimer, 1.0f - ((float)(_ammoRemaining)/(float)(this.magazineSize))) / ((float)(this.magazineSize) - (float)(_ammoRemaining));
+            _dynamicReloadTime = Mathf.Lerp(0.0f, this.reloadTimer, 1.0f - ((float)(this.ammoRemaining)/(float)(this.magazineSize))) / ((float)(this.magazineSize) - (float)(this.ammoRemaining));
             InvokeRepeating(nameof(Reload), _dynamicReloadTime, _dynamicReloadTime);
         }
 
         OnDeathAmmoReset();
-
-        this.ammoRemaining.text = _ammoRemaining.ToString();
     }
 
     private bool canShoot()
     {
         bool canShoot = false;
-        if((_coolDownTime <= 0.0f) && _ammoRemaining > 0 && !IsInvoking("Reload"))
+        if((_coolDownTime <= 0.0f) && this.ammoRemaining > 0 && !IsInvoking("Reload"))
         {
             if(_reloadDelayFinished)
             {
@@ -103,9 +118,9 @@ public class Shoot : MonoBehaviour
             grenade.transform.position = _grenadeSpawn.transform.position + spawnOffset;
             
             ForceMode mode = ForceMode.Impulse;
-            _rigidbodyGrenade.AddForce(Vector3.up * this.initialArcPower, mode);
+            //_rigidbodyGrenade.AddForce(Vector3.up * this.initialArcPower, mode);
             _rigidbodyGrenade.AddForce( Camera.main.transform.forward * this.power, mode);
-            _ammoRemaining--;
+            this.ammoRemaining--;
             _coolDownTime = this.shootCooldown;
             _reloadDelayTime = this.reloadDelay;
         }
@@ -113,9 +128,9 @@ public class Shoot : MonoBehaviour
 
     private void OnReload(InputAction.CallbackContext context)
     {
-            if(_ammoRemaining < this.magazineSize && !IsInvoking("Reload"))
+            if(this.ammoRemaining < this.magazineSize && !IsInvoking("Reload"))
             {
-                _dynamicReloadTime = Mathf.Lerp(0.0f, this.reloadTimer, 1.0f - ((float)(_ammoRemaining)/(float)(this.magazineSize))) / ((float)(this.magazineSize) - (float)(_ammoRemaining));
+                _dynamicReloadTime = Mathf.Lerp(0.0f, this.reloadTimer, 1.0f - ((float)(this.ammoRemaining)/(float)(this.magazineSize))) / ((float)(this.magazineSize) - (float)(this.ammoRemaining));
                 InvokeRepeating(nameof(Reload), _dynamicReloadTime, _dynamicReloadTime);
             }
 
@@ -123,10 +138,10 @@ public class Shoot : MonoBehaviour
 
     private void Reload()
     {
-        if(_ammoRemaining < this.magazineSize)
+        if(this.ammoRemaining < this.magazineSize)
         {
-            _reloadSoundSource.Play();
-            _ammoRemaining++;
+            _audioSource.PlayOneShot(this.reloadSound);
+            this.ammoRemaining++;
         }
         else
         {
@@ -158,7 +173,7 @@ public class Shoot : MonoBehaviour
         }
         if(_onDeathAmmoResetDelay <= 0.0f)
         {
-            _ammoRemaining = this.magazineSize;
+            this.ammoRemaining = this.magazineSize;
             _hasDied = false;
         }
         if(!_hasDied)

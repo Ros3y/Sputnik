@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d65d772a271c3614cb9bab6599d5b7db, type: 2}
+  - {fileID: 2100000, guid: 2d350e6bc7f32dc459cbdf6d4f41df36, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,7 +155,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 61d541bb917231946813ecc55acfcaea, type: 2}
+  - {fileID: 2100000, guid: 643ee02820823ba4d8e48caff125cc35, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -251,7 +251,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d65d772a271c3614cb9bab6599d5b7db, type: 2}
+  - {fileID: 2100000, guid: 2d350e6bc7f32dc459cbdf6d4f41df36, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -346,7 +346,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d65d772a271c3614cb9bab6599d5b7db, type: 2}
+  - {fileID: 2100000, guid: 2d350e6bc7f32dc459cbdf6d4f41df36, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -481,7 +481,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 61d541bb917231946813ecc55acfcaea, type: 2}
+  - {fileID: 2100000, guid: 643ee02820823ba4d8e48caff125cc35, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -528,11 +528,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e96d461ef38db4f923dc91b97e3897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detonationDelay: 1
-  detonationEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+  detonationForce: 25
   detonationRadius: 20
-  detonationForce: 1000
-  grenadeImpactSound: {fileID: 0}
+  detonationEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+  _detonationPosition: {fileID: 0}
+  onDetonateDestroy: 1
+  detonationDelay: 1
+  _grenadeTimerLight: {fileID: 2060700453954225654}
+  grenadeImpactSound: {fileID: 8300000, guid: 738e3bff6c9edfe409dcb5b68d82d66a, type: 3}
 --- !u!54 &951333900
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -559,7 +562,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 738e3bff6c9edfe409dcb5b68d82d66a, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -658,15 +661,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1206469623560305515, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1206469623560305515, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4499998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1206469623560305515, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.349998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1206469623560305515, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -702,7 +705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2028517294959931773, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
       propertyPath: m_Range
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2028517294959931773, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
       propertyPath: m_Intensity
@@ -718,6 +721,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
+--- !u!108 &2060700453954225654 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 2028517294959931773, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
+  m_PrefabInstance: {fileID: 53948218244805771}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1153365867831185376 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1206469623560305515, guid: 2c3539177325bbe4787a873792167fb5, type: 3}

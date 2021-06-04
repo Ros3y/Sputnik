@@ -13,24 +13,19 @@ public class RespawnPlayer : MonoBehaviour
     public float respawnDelay;
     private ParticleSystem _respawnEffect;
     public AudioClip respawnSound;
-    private AudioSource _RespawnSoundSource;
     public ParticleSystem deathEffect;
     public AudioClip deathSound;
-    private AudioSource _deathSoundSource;
     private bool _canRespawn;
     public float respawnCooldown;
     private float _respawnCooldownTime;
+    private AudioSource _audioSource;
 
    private void Awake()
    {
         this.respawnPlayerInput.performed += OnRespawn;
         _rigidbody = GetComponent<Rigidbody>();
+        _audioSource = GetComponent<AudioSource>();
         _initialPosition = transform.position;
-        AudioSource[] allAudioSources = GetComponents<AudioSource>();
-        _RespawnSoundSource = allAudioSources[2];
-        _deathSoundSource = allAudioSources[3];
-        _deathSoundSource.clip = this.deathSound;
-        _RespawnSoundSource.clip = this.respawnSound;
         _respawnEffect = _spawnEffectPosition.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
         _canRespawn = true;
    }
@@ -83,7 +78,7 @@ public class RespawnPlayer : MonoBehaviour
     private void Kill()
     {
         Instantiate(this.deathEffect, _spawnEffectPosition.transform.position, _spawnEffectPosition.transform.rotation);
-        _deathSoundSource.Play();
+        _audioSource.PlayOneShot(this.deathSound);
         _rigidbody.isKinematic = true;
         this.transform.localScale = Vector3.zero;
     }
@@ -95,6 +90,6 @@ public class RespawnPlayer : MonoBehaviour
         transform.position = _initialPosition;
         _rigidbody.velocity = Vector3.zero;
         _respawnEffect.Play();
-        _RespawnSoundSource.Play();
+        _audioSource.PlayOneShot(this.respawnSound);
     }
 }

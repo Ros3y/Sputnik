@@ -9,13 +9,14 @@ public class RigidbodyMovement : MonoBehaviour
 {
     public InputAction moveInput;
     public InputAction jumpInput;
+    private Vector3 _direction;
+    private Jetpack _jetpack;
     public float speed;
     public float arealSpeed;
     public float jumpMagnitude;
     public float maxSpeed;
     private Rigidbody _rigidbody;
     private CapsuleCollider _collider;
-    private Vector3 _direction;
     private Transform _transform;
     public Animator animator;
 
@@ -24,10 +25,12 @@ public class RigidbodyMovement : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<CapsuleCollider>();
+        _jetpack = GetComponent<Jetpack>();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        this.jumpInput.performed += OnJump; 
 
+        this.jumpInput.performed += OnJump; 
     }
 
     private void OnEnable()
@@ -48,6 +51,7 @@ public class RigidbodyMovement : MonoBehaviour
 
         _direction.x = input.x;
         _direction.z = input.y;
+
         this.animator.SetFloat("Speed", _rigidbody.velocity.sqrMagnitude);
         this.animator.SetBool("Grounded", isGrounded());
         
@@ -58,25 +62,38 @@ public class RigidbodyMovement : MonoBehaviour
         float yaw = Camera.main.transform.eulerAngles.y;
         Quaternion rotation = Quaternion.AngleAxis(yaw, Vector3.up);
         Vector3 forward = rotation * _direction.normalized;
+
         float velocityMagnitude = _rigidbody.velocity.sqrMagnitude;
-        ForceMode mode = ForceMode.Force;
-        float forceMultiplier = Mathf.Min(this.speed, Mathf.Abs(maxSpeed - velocityMagnitude));
-        float arealForceMultiplier = Mathf.Min(this.arealSpeed, Mathf.Abs(maxSpeed - velocityMagnitude));
+
         this.transform.rotation = rotation;
+
+        Vector3 force = Vector3.zero;
+        ForceMode mode = ForceMode.Force;
 
         if(canMoveForward())
         {
             if(isGrounded())
             {
-                _rigidbody.AddForce(forward * forceMultiplier, mode);    
+                float forceMultiplier = Mathf.Min(this.speed, Mathf.Abs(maxSpeed - velocityMagnitude));
+                force = forward * forceMultiplier;    
             }
 
             else
             {
-                _rigidbody.AddForce(forward * arealForceMultiplier, mode); 
+                float aerialForceMultiplier = Mathf.Min(this.arealSpeed, Mathf.Abs(maxSpeed - velocityMagnitude));
+                force = forward * aerialForceMultiplier; 
             }
         }
-   
+
+        if(_jetpack.isJetpacking)
+        {
+            force += Vector3.up * _jetpack.jetpackConstantForce;        
+        }
+
+        if(force.sqrMagnitude > 0.0f)
+        {
+            _rigidbody.AddForce(force, mode);
+        }
     }
 
     private bool canMoveForward()

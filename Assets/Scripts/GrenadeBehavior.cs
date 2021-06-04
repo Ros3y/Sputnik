@@ -3,31 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class GrenadeBehavior : MonoBehaviour
+public class GrenadeBehavior : Destructible
 {
-    public float detonationDelay;
-    public GameObject detonationEffect;
-    private float _countdown;
-    private float _lightTimer;
-    public float detonationRadius;
-    private bool hasDetonated = false;
-    public float detonationForce;
     private Rigidbody _rigidbody;
+
+    // Detonation
     private ContactPoint _contact;
-    private Light _grenadeTimerLight;
-    public AudioSource grenadeImpactSound;
-    private bool _hasImpacted; 
+    private bool _hasImpacted;
+    public float detonationDelay;
+    private float _countdown;
+    private bool hasDetonated = false;
+
+    // Effects
+    public Light _grenadeTimerLight;
+    private float _lightTimer;
+
+    // Audio 
+    private AudioSource _audioSource;
+    public AudioClip grenadeImpactSound;
     
 
     private void Awake()
     {
+        _rigidbody = GetComponent<Rigidbody>();
+
+        _detonationPosition = this.gameObject;
+
         _countdown = this.detonationDelay;
         _lightTimer = this.detonationDelay;
-        _rigidbody = GetComponent<Rigidbody>();
         _lightTimer = this.detonationDelay;
-        _grenadeTimerLight = this.transform.GetChild(0).gameObject.GetComponent<Light>();
+
         _hasImpacted = false;
-        this.grenadeImpactSound = GetComponent<AudioSource>();
+
+        _audioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -42,6 +50,7 @@ public class GrenadeBehavior : MonoBehaviour
                 _lightTimer = 0.0f;
             }
             _grenadeTimerLight.intensity = Mathf.Lerp(8.0f, 0.0f, _lightTimer);
+            Debug.Log(_grenadeTimerLight);
         }
     }
 
@@ -52,36 +61,13 @@ public class GrenadeBehavior : MonoBehaviour
         {
             FixedJoint _fixedJoint = gameObject.AddComponent<FixedJoint>();
             _fixedJoint.connectedBody = collision.rigidbody;
-            //_rigidbody.isKinematic = true;
-            this.grenadeImpactSound.Play();
-            Instantiate(_grenadeTimerLight);
-            _grenadeTimerLight.transform.position = transform.position;
+
             _hasImpacted = true;
-            if(collision.collider.tag == "Power Core")
-            {
-                Invoke(nameof(detonate), 0.0f);    
-            }        
-            else
-            {
-                Invoke(nameof(detonate), _countdown);
-            }
+            _audioSource.PlayOneShot(this.grenadeImpactSound);
+
+            Detonate(this.detonationDelay);
+        
             hasDetonated = true;
         }
-    }
-
-    private void detonate()
-    {
-        Instantiate(detonationEffect, transform.position, transform.rotation);
-        Collider[] colliders = Physics.OverlapSphere(this.transform.position, detonationRadius);
-
-        foreach(Collider nearByObject in colliders)
-        {
-            Rigidbody nearByRigidbody = nearByObject.GetComponent<Rigidbody>();
-            if(nearByRigidbody != null)
-            {
-               nearByRigidbody.AddExplosionForce(detonationForce, this.transform.position, detonationRadius); 
-            }    
-        }
-        Destroy(this.gameObject);
     }
 }
