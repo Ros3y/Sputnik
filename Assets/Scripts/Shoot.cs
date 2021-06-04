@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -27,22 +25,20 @@ public class Shoot : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public Text ammoRemaining;
     public AudioClip reloadSound;
-    private AudioSource _reloadSoundSource;
+    private AudioSource _audioSource;
     public float onDeathResetDelay;
     private float _onDeathAmmoResetDelay;
     private bool _hasDied;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _audioSource = GetComponent<AudioSource>();
         _reloadDelayFinished = true;
         _coolDownTime = 0.0f;
         _reloadDelayTime = 0.0f;
         _ammoRemaining = this.magazineSize;
         _grenadeSpawn = this.grenadeLauncher.transform.GetChild(0).gameObject;
         _muzzleFlashSpawn = this.grenadeLauncher.transform.GetChild(1).gameObject;
-        AudioSource[] allAudioSources = GetComponents<AudioSource>();
-        _reloadSoundSource = allAudioSources[1];
-        _reloadSoundSource.clip = this.reloadSound;
         _onDeathAmmoResetDelay = this.onDeathResetDelay;
         _hasDied = false;
         this.shootInput.performed += OnShoot;
@@ -97,11 +93,11 @@ public class Shoot : MonoBehaviour
         {
             GameObject grenade = Instantiate(this.grenadePrefab);
             Rigidbody _rigidbodyGrenade = grenade.GetComponent<Rigidbody>();
-            
+
             Instantiate(muzzleFlash, _muzzleFlashSpawn.transform.position, Camera.main.transform.rotation);
             Vector3 spawnOffset = Camera.main.transform.forward * 0.5f;
             grenade.transform.position = _grenadeSpawn.transform.position + spawnOffset;
-            
+
             ForceMode mode = ForceMode.Impulse;
             _rigidbodyGrenade.AddForce(Vector3.up * this.initialArcPower, mode);
             _rigidbodyGrenade.AddForce( Camera.main.transform.forward * this.power, mode);
@@ -125,7 +121,7 @@ public class Shoot : MonoBehaviour
     {
         if(_ammoRemaining < this.magazineSize)
         {
-            _reloadSoundSource.Play();
+            _audioSource.PlayOneShot(this.reloadSound);
             _ammoRemaining++;
         }
         else
@@ -138,7 +134,7 @@ public class Shoot : MonoBehaviour
     {
         CancelInvoke();
         _reloadDelayFinished = false;
-        Invoke(nameof(ReloadCooldown), this.reloadDelay);     
+        Invoke(nameof(ReloadCooldown), this.reloadDelay);
     }
 
     private void ReloadCooldown()
@@ -164,6 +160,6 @@ public class Shoot : MonoBehaviour
         if(!_hasDied)
         {
             _onDeathAmmoResetDelay = this.onDeathResetDelay;
-        }        
+        }
     }
 }

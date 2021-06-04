@@ -41,13 +41,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7792140477574371825}
   - component: {fileID: 9095632139527623756}
-  - component: {fileID: 9095632139527623755}
   - component: {fileID: 9095632139527623759}
+  - component: {fileID: 9095632139527623755}
   - component: {fileID: 9095632139527623754}
   - component: {fileID: 9095632139527623758}
-  - component: {fileID: 50102802}
-  - component: {fileID: 50102803}
   - component: {fileID: 50102804}
+  - component: {fileID: 50102802}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -87,6 +86,20 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &9095632139527623759
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630323568903889327}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &9095632139527623755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69034071f96a80d4d8c6e1556bc86065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 3409427867167675321}
   moveInput:
     m_Name: Move Input
     m_Type: 0
@@ -191,21 +205,6 @@ MonoBehaviour:
   arealSpeed: 10
   jumpMagnitude: 10
   maxSpeed: 150
-  animator: {fileID: 3409427867167675321}
---- !u!136 &9095632139527623759
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 630323568903889327}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &9095632139527623754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +276,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 198234346748616026, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
   ammoRemaining: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: c829b873d4332934f88c43a5e18069e1, type: 3}
+  onDeathResetDelay: 1
 --- !u!114 &9095632139527623758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,18 +313,57 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Jetpack Input
       m_Flags: 0
-  jetpackFuel: 100
-  fuelTank: {fileID: 0}
-  fuelTankBar: {fileID: 0}
-  jetpackConstantForce: 1
-  fuelDecrementMultiplier: 25
+  maxJetpackFuel: 100
+  jetpackConstantForce: 15
   fuelIncrementMultiplier: 50
-  animator: {fileID: 3409427867167675321}
+  fuelDecrementMultiplier: 25
   smokeTraileffect1: {fileID: 9004968224283183926}
-  rocketFlame1: {fileID: 9005960195033369051}
   smokeTraileffect2: {fileID: 9004968223740243292}
+  rocketFlame1: {fileID: 9005960195033369051}
   rocketFlame2: {fileID: 9005960194670243069}
-  jetpackSound: {fileID: 8300000, guid: 1b76ab4cdff01b9429c98a880c148109, type: 3}
+  jetpackAudioSource: {fileID: 285074332443018498}
+--- !u!114 &50102804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630323568903889327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9a2b56b83bd8341a9b376779bf64ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPlayerInput:
+    m_Name: Respawn Player Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1d3f80f7-ec03-486f-b7ff-a9d5cd749879
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 2871ea20-0b0a-4ab1-bd9d-c5819b91ae91
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Respawn Player Input
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9ce49463-72c1-440c-b50c-b25bcc2ef68e
+      m_Path: <Gamepad>/select
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Respawn Player Input
+      m_Flags: 0
+  _spawnEffectPosition: {fileID: 1017704730}
+  respawnDelay: 1
+  respawnSound: {fileID: 8300000, guid: 9fc03a91b5216b74394a6166059d68f2, type: 3}
+  deathEffect: {fileID: 6660517728344796623, guid: b6fef52dcc822ea4abb4c152b461091f, type: 3}
+  deathSound: {fileID: 8300000, guid: a7696a2bf114ed3438fefac35ec6ec66, type: 3}
+  respawnCooldown: 2
 --- !u!82 &50102802
 AudioSource:
   m_ObjectHideFlags: 0
@@ -421,142 +460,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &50102803
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 630323568903889327}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 0.75
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &50102804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 630323568903889327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c9a2b56b83bd8341a9b376779bf64ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnPlayerInput:
-    m_Name: Respawn Player Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1d3f80f7-ec03-486f-b7ff-a9d5cd749879
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 2871ea20-0b0a-4ab1-bd9d-c5819b91ae91
-      m_Path: <Keyboard>/q
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Respawn Player Input
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 9ce49463-72c1-440c-b50c-b25bcc2ef68e
-      m_Path: <Gamepad>/select
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Respawn Player Input
-      m_Flags: 0
-  respawnEffect: {fileID: 0}
-  _spawnEffectPosition: {fileID: 1017704730}
-  respawnDelay: 0
-  deathEffect: {fileID: 0}
 --- !u!1001 &6292719869813225479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1639,6 +1542,11 @@ PrefabInstance:
     - {fileID: 5273543795037368567, guid: f50847d23afac8445a0b007a34f147fb, type: 3}
     - {fileID: 5273543795564816050, guid: f50847d23afac8445a0b007a34f147fb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f50847d23afac8445a0b007a34f147fb, type: 3}
+--- !u!82 &285074332443018498 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9065434497554849094, guid: f50847d23afac8445a0b007a34f147fb, type: 3}
+  m_PrefabInstance: {fileID: 9095632139030698052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3969159019309869654 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5273543796159525394, guid: f50847d23afac8445a0b007a34f147fb, type: 3}

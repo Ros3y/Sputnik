@@ -1,46 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Destructible : MonoBehaviour
 {
-    private Rigidbody _rigidbody;
-    private BoxCollider _collider;
-    public GameObject powerCoreDestructible;
-    public GameObject grenade;
-    public float detonationForce;
-    public float detonationRadius;
     public GameObject detonationEffect;
-    private GameObject _detonationPosition;
-    private void Awake()
+    public float detonationForce;
+    public float detonationUpwardsModifier;
+    public float detonationRadius;
+    public float detonationDelay;
+    public bool destroyOnDetonate;
+
+    public void DetonateImmediately()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _collider = GetComponent<BoxCollider>();
-        _detonationPosition = this.transform.GetChild(0).gameObject;
+        OnDetonate();
     }
 
-     private void OnCollisionEnter(Collision collision)
-     {
-        if(collision.collider.tag == "Grenade")
+    public void Detonate()
+    {
+        Detonate(this.detonationDelay);
+    }
+
+    public void Detonate(float delay)
+    {
+        Invoke(nameof(OnDetonate), delay);
+    }
+
+    protected virtual void OnDetonate()
+    {
+        Collider[] colliders = Physics.OverlapSphere(this.transform.position, this.detonationRadius);
+
+        foreach (Collider collider in colliders)
         {
-            Instantiate(this.powerCoreDestructible, this.transform.position, this.transform.rotation);
-            Invoke(nameof(detonate), 0.0f);
+            if (collider.attachedRigidbody != null) {
+                collider.attachedRigidbody.AddExplosionForce(this.detonationForce, this.transform.position, this.detonationRadius, this.detonationUpwardsModifier);
+            }
+        }
+
+        Instantiate(this.detonationEffect, this.transform.position, this.transform.rotation);
+
+        if (this.destroyOnDetonate) {
             Destroy(this.gameObject);
         }
-     }
-
-      private void detonate()
-    {
-        Instantiate(detonationEffect, _detonationPosition.transform.position, this.transform.rotation);
-        Collider[] colliders = Physics.OverlapSphere(this.transform.position, detonationRadius);
-    
-        foreach(Collider nearByObject in colliders)
-        {
-            Rigidbody nearByRigidbody = nearByObject.GetComponent<Rigidbody>();
-            if(nearByRigidbody != null)
-            {
-               nearByRigidbody.AddExplosionForce(detonationForce, _detonationPosition.transform.position, detonationRadius); 
-            }    
-        }
     }
+
 }

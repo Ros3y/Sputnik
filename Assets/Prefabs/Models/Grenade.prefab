@@ -427,9 +427,9 @@ GameObject:
   - component: {fileID: 2619995911315983775}
   - component: {fileID: 2619995911315983772}
   - component: {fileID: 2619995911315983773}
-  - component: {fileID: 2619995911315983745}
   - component: {fileID: 951333900}
   - component: {fileID: 4040609736657907983}
+  - component: {fileID: 2619995911315983745}
   m_Layer: 7
   m_Name: Grenade
   m_TagString: Grenade
@@ -516,23 +516,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2619995911315983745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2619995911315983770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93e96d461ef38db4f923dc91b97e3897, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detonationDelay: 1
-  detonationEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
-  detonationRadius: 20
-  detonationForce: 1000
-  grenadeImpactSound: {fileID: 0}
 --- !u!54 &951333900
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -645,6 +628,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2619995911315983745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2619995911315983770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e96d461ef38db4f923dc91b97e3897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detonationEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+  detonationForce: 1000
+  detonationUpwardsModifier: 0
+  detonationRadius: 20
+  detonationDelay: 1
+  destroyOnDetonate: 1
 --- !u!1001 &53948218244805771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -658,15 +659,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1206469623560305515, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1206469623560305515, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4499998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1206469623560305515, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.349998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1206469623560305515, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -703,6 +704,10 @@ PrefabInstance:
     - target: {fileID: 2028517294959931773, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
       propertyPath: m_Range
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2028517294959931773, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2028517294959931773, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
       propertyPath: m_Intensity
