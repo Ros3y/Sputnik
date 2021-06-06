@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 4392150262563271973}
   - component: {fileID: 8294635777075614901}
   - component: {fileID: 6156937839106325870}
-  - component: {fileID: 5942770246902546171}
   m_Layer: 0
-  m_Name: CameraController-ThirdPerson
+  m_Name: Player Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4154382543331463349}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -132,9 +131,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fieldOfView: 90
   fieldOfViewAxis: 1
-  _distance: 8
-  minDistance: 4
-  maxDistance: 16
+  _distance: 6
+  minDistance: 6
+  maxDistance: 6
   _detached: 0
 --- !u!114 &8294635777075614901
 MonoBehaviour:
@@ -149,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offset: {x: 0, y: 2.5, z: -2}
+  offset: {x: 0.5, y: 0.75, z: 0}
   damping: 0.2
   maxSpeed: Infinity
 --- !u!114 &6156937839106325870
@@ -172,61 +171,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   drawDebugLines: 0
---- !u!114 &5942770246902546171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4154382543331463349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c11fd28b31a838f4ca1bcb6aff1e96fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoomInput:
-    m_Name: CameraZoom
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: deb50874-0261-4c31-af11-36ec12d6f5b6
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 8b8883f7-b702-4336-bb6f-f1908ed1c308
-      m_Path: <Mouse>/scroll/y
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: CameraZoom
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 02df0bb5-3ee2-4f7c-952b-d7abd25b635e
-      m_Path: 1DAxis
-      m_Interactions: 
-      m_Processors: axisDeadzone, scale(factor=4)
-      m_Groups: 
-      m_Action: CameraZoom
-      m_Flags: 4
-    - m_Name: Negative
-      m_Id: e91222da-ab0e-467a-a120-bd2ecf3b1402
-      m_Path: <Gamepad>/leftTrigger
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: CameraZoom
-      m_Flags: 8
-    - m_Name: Positive
-      m_Id: cbcd9a68-3e02-448c-b646-f1d9853effc8
-      m_Path: <Gamepad>/rightTrigger
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: CameraZoom
-      m_Flags: 8
-  sensitivity: 1
-  damping: 0
-  distanceFactor: 0.3
 --- !u!1 &4154382544250763410
 GameObject:
   m_ObjectHideFlags: 0
