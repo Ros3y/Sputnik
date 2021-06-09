@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 177017315}
   - component: {fileID: 177017318}
   - component: {fileID: 177017317}
-  - component: {fileID: 177017316}
   m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &177017316
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177017314}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &875546899
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +92,6 @@ GameObject:
   - component: {fileID: 875546900}
   - component: {fileID: 875546903}
   - component: {fileID: 875546902}
-  - component: {fileID: 875546901}
   m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
@@ -177,20 +162,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &875546901
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 875546899}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &1666678971
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +173,6 @@ GameObject:
   - component: {fileID: 1666678972}
   - component: {fileID: 1666678975}
   - component: {fileID: 1666678974}
-  - component: {fileID: 1666678973}
   m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
@@ -273,19 +243,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1666678973
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1666678971}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1753436841
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +254,6 @@ GameObject:
   - component: {fileID: 1753436842}
   - component: {fileID: 1753436845}
   - component: {fileID: 1753436844}
-  - component: {fileID: 1753436843}
   m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -368,19 +324,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1753436843
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753436841}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &717395252460803404
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e96d461ef38db4f923dc91b97e3897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detonationForce: 22
+  detonationForce: 15
   detonationRadius: 20
   detonationEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   _detonationPosition: {fileID: 0}
@@ -721,14 +664,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
---- !u!108 &2060700453954225654 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 2028517294959931773, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
-  m_PrefabInstance: {fileID: 53948218244805771}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1153365867831185376 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1206469623560305515, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
+  m_PrefabInstance: {fileID: 53948218244805771}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &2060700453954225654 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 2028517294959931773, guid: 2c3539177325bbe4787a873792167fb5, type: 3}
   m_PrefabInstance: {fileID: 53948218244805771}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2163795823649997425

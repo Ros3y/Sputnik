@@ -27,10 +27,13 @@ public class RigidbodyMovement : MonoBehaviour
         _collider = GetComponent<CapsuleCollider>();
         _jetpack = GetComponent<Jetpack>();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
         this.jumpInput.performed += OnJump; 
+    }
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;     
     }
 
     private void OnEnable()
@@ -87,7 +90,7 @@ public class RigidbodyMovement : MonoBehaviour
 
         if(_jetpack.isJetpacking)
         {
-            force += Vector3.up * _jetpack.jetpackConstantForce;        
+            force += (Vector3.up * _jetpack.jetpackConstantForce) + (Camera.main.transform.forward * _jetpack.jetpackConstantForce);        
         }
 
         if(force.sqrMagnitude > 0.0f)

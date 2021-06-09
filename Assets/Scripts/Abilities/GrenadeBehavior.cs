@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Zigurous.UI.Reticles;
 
 public class GrenadeBehavior : Destructible
 {
     private Rigidbody _rigidbody;
+    private SphereCollider _collider;
 
     // Detonation
     private ContactPoint _contact;
@@ -16,15 +18,19 @@ public class GrenadeBehavior : Destructible
     // Effects
     public Light _grenadeTimerLight;
     private float _lightTimer;
+    private Hitmarker _hitmarker;
 
     // Audio 
     private AudioSource _audioSource;
     public AudioClip grenadeImpactSound;
+    public AudioClip grenadeTimerSound;
+    private float _grenadeTimerDelay = 0.5f;
     
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _collider = GetComponent<SphereCollider>();
 
         _detonationPosition = this.gameObject;
 
@@ -35,6 +41,7 @@ public class GrenadeBehavior : Destructible
         _hasImpacted = false;
 
         _audioSource = GetComponent<AudioSource>();
+        _hitmarker = FindObjectOfType<Hitmarker>();
     }
     private void Update()
     {
@@ -51,19 +58,20 @@ public class GrenadeBehavior : Destructible
             _grenadeTimerLight.intensity = Mathf.Lerp(8.0f, 0.0f, _lightTimer);
             Debug.Log(_grenadeTimerLight);
         }
+        _grenadeTimerDelay -= Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        _contact = collision.contacts[0];
         if(!_hasImpacted)
         {
-            FixedJoint _fixedJoint = gameObject.AddComponent<FixedJoint>();
-            _fixedJoint.connectedBody = collision.rigidbody;
-            // _rigidbody.isKinematic = true;
-            // gameObject.transform.parent = collision.gameObject.transform;
+            this.transform.position = collision.contacts[0].point + collision.contacts[0].normal * _collider.radius/3;
+            _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             _hasImpacted = true;
             _audioSource.PlayOneShot(this.grenadeImpactSound);
+            _hitmarker.enabled = true;
+            Invoke(nameof(playGrenadeTimer), 0.3f);
+
 
             Detonate(this.detonationDelay);
         }
@@ -72,5 +80,10 @@ public class GrenadeBehavior : Destructible
         {
             
         }
+    }
+
+    private void playGrenadeTimer()
+    {
+        _audioSource.PlayOneShot(this.grenadeTimerSound);    
     }
 }

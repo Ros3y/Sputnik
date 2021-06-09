@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Zigurous.Tweening;
 
 public class Jetpack : MonoBehaviour
 {
@@ -23,9 +24,7 @@ public class Jetpack : MonoBehaviour
     public float _percentage { get; private set; }
 
     // Effects
-    public ParticleSystem smokeTraileffect1;
     public ParticleSystem rocketFlame1;
-    public ParticleSystem smokeTraileffect2;
     public ParticleSystem rocketFlame2;
     
     // Audio
@@ -121,21 +120,21 @@ public class Jetpack : MonoBehaviour
     private void StartJetpacking()
     {
         this.isJetpacking = true;
-        this.smokeTraileffect1.Play();
         this.rocketFlame1.Play();
-        this.smokeTraileffect2.Play();
         this.rocketFlame2.Play();
         this.jetpackSoundSource.Play();
+        this.jetpackSoundSource.KillTweens();
+        this.jetpackSoundSource.TweenVolume(1.0f, 0.50f);
     }
 
     private void StopJetpacking()
     {
         this.isJetpacking = false;
-        this.smokeTraileffect1.Stop();
         this.rocketFlame1.Stop();
-        this.smokeTraileffect2.Stop();
         this.rocketFlame2.Stop();
-        this.jetpackSoundSource.Stop();
+        this.jetpackSoundSource.KillTweens();
+        this.jetpackSoundSource.TweenVolume(0.0f, 0.25f)
+                               .OnComplete(() => this.jetpackSoundSource.Stop());
     }
 
     private bool CanJetpack()

@@ -92,6 +92,13 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.zigurous.animation.tweening": {
+      "version": "https://github.com/zigurous/unity-tweening-system.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "015eb398faebe1b5a497588c99a6e9e83f5b1646"
+    },
     "com.zigurous.controllers.camera": {
       "version": "https://github.com/zigurous/unity-camera-controller.git",
       "depth": 0,
@@ -101,12 +108,26 @@
       },
       "hash": "9a1846c455fd6dfa8d7415817c72e30f4c3857c6"
     },
+    "com.zigurous.datastructures": {
+      "version": "https://github.com/zigurous/unity-data-structures.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "59f93064bc6d299cb73f6e28d21bad18a972ba7e"
+    },
     "com.zigurous.prototyping": {
       "version": "https://github.com/zigurous/unity-prototyping-kit.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
       "hash": "00a8d56950814baca976cd56b2f303b5ae79b3aa"
+    },
+    "com.zigurous.ui.reticles": {
+      "version": "https://github.com/zigurous/unity-ui-reticles.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d56951dc74992882ecbca1a7b166f164f1896c59"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

@@ -11,8 +11,7 @@ public class Shoot : MonoBehaviour
     public InputAction reloadInput;
 
     // Gun
-    public GameObject grenadeLauncher;
-    private GameObject _grenadeSpawn;
+    public Transform grenadeSpawn;
 
     // Ammo
     public GameObject grenadePrefab;
@@ -38,7 +37,7 @@ public class Shoot : MonoBehaviour
     private bool _hasDied;
 
     // Effects
-    private GameObject _muzzleFlashSpawn;
+    public Transform muzzleFlashSpawn;
     public ParticleSystem muzzleFlash;
 
     //Audio
@@ -56,8 +55,6 @@ public class Shoot : MonoBehaviour
         _reloadDelayTime = 0.0f;
 
         this.ammoRemaining = this.magazineSize;
-        _grenadeSpawn = this.grenadeLauncher.transform.GetChild(0).gameObject;
-        _muzzleFlashSpawn = this.grenadeLauncher.transform.GetChild(1).gameObject;
 
         _onDeathAmmoResetDelay = this.onDeathResetDelay;
         _hasDied = false;
@@ -113,13 +110,14 @@ public class Shoot : MonoBehaviour
             GameObject grenade = Instantiate(this.grenadePrefab);
             Rigidbody _rigidbodyGrenade = grenade.GetComponent<Rigidbody>();
             
-            Instantiate(muzzleFlash, _muzzleFlashSpawn.transform.position, Camera.main.transform.rotation);
+            Instantiate(muzzleFlash, this.muzzleFlashSpawn.position, Camera.main.transform.rotation);
             Vector3 spawnOffset = Camera.main.transform.forward * 0.5f;
-            grenade.transform.position = _grenadeSpawn.transform.position + spawnOffset;
+            grenade.transform.position = this.grenadeSpawn.position + spawnOffset;
             
             ForceMode mode = ForceMode.Impulse;
             //_rigidbodyGrenade.AddForce(Vector3.up * this.initialArcPower, mode);
             _rigidbodyGrenade.AddForce( Camera.main.transform.forward * this.power, mode);
+            
             this.ammoRemaining--;
             _coolDownTime = this.shootCooldown;
             _reloadDelayTime = this.reloadDelay;

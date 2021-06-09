@@ -8,6 +8,8 @@ TagManager:
   - Power Core
   - Death Field
   - Level
+  - Smart Light
+  - Pulse
   layers:
   - Default
   - TransparentFX
