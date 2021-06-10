@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using Zigurous.UI.Reticles;
+using Zigurous.Reticles;
 
 public class GrenadeBehavior : Destructible
 {
@@ -56,7 +56,6 @@ public class GrenadeBehavior : Destructible
                 _lightTimer = 0.0f;
             }
             _grenadeTimerLight.intensity = Mathf.Lerp(8.0f, 0.0f, _lightTimer);
-            Debug.Log(_grenadeTimerLight);
         }
         _grenadeTimerDelay -= Time.deltaTime;
     }
@@ -74,11 +73,6 @@ public class GrenadeBehavior : Destructible
 
 
             Detonate(this.detonationDelay);
-        }
-
-        if(collision.gameObject.tag == "Power Core")
-        {
-            
         }
     }
 

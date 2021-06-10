@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zigurous.Reticles;
 
 public class Shoot : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class Shoot : MonoBehaviour
     // Effects
     public Transform muzzleFlashSpawn;
     public ParticleSystem muzzleFlash;
+    private ReticleBloom _bloom;
 
     //Audio
     public AudioClip reloadSound;
@@ -61,6 +63,8 @@ public class Shoot : MonoBehaviour
 
         this.shootInput.performed += OnShoot;
         this.reloadInput.performed += OnReload;
+
+        _bloom = FindObjectOfType<ReticleBloom>();
     }
 
     private void OnEnable()
@@ -117,7 +121,7 @@ public class Shoot : MonoBehaviour
             ForceMode mode = ForceMode.Impulse;
             //_rigidbodyGrenade.AddForce(Vector3.up * this.initialArcPower, mode);
             _rigidbodyGrenade.AddForce( Camera.main.transform.forward * this.power, mode);
-            
+            _bloom.Apply();
             this.ammoRemaining--;
             _coolDownTime = this.shootCooldown;
             _reloadDelayTime = this.reloadDelay;

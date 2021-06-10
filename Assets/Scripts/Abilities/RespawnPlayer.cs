@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Zigurous.Tweening;
 
 public class RespawnPlayer : MonoBehaviour
 {
     public InputAction respawnPlayerInput;
-    private Vector3 _spawnPosition;
     private Rigidbody _rigidbody;
-    public GameObject _spawnEffectPosition;
+    public GameObject deathEffectPosition;
     public float respawnDelay;
-    private ParticleSystem _respawnEffect;
+    public ParticleSystem respawnEffect;
     public AudioClip respawnSound;
     public ParticleSystem deathEffect;
     public AudioClip deathSound;
@@ -21,22 +21,25 @@ public class RespawnPlayer : MonoBehaviour
     private AudioSource _audioSource;
     public bool isSpawning { get; private set; }
     public bool isDead { get; private set; }
-    private LevelController _levelInformation;
+    
+    public Transform spawnLocation;
 
    private void Awake()
    {
         this.respawnPlayerInput.performed += OnRespawn;
         _rigidbody = GetComponent<Rigidbody>();
         _audioSource = GetComponent<AudioSource>();
-        _levelInformation = GetComponent<LevelController>();
 
-        _spawnPosition = _levelInformation.spawnLocation.gameObject.transform.position;
-        gameObject.transform.position = _spawnPosition;
-
-        _respawnEffect = _spawnEffectPosition.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
         _canRespawn = true;
 
+
         this.isSpawning = true;
+        this.transform.position = this.spawnLocation.position;
+        Instantiate(this.respawnEffect, this.spawnLocation.transform.position, this.spawnLocation.transform.rotation);
+        _audioSource.PlayOneShot(this.respawnSound);
+        _audioSource.KillTweens();
+        // this.jetpackSoundSource.TweenVolume(0.0f, 0.25f)
+        //                        .OnComplete(() => this.jetpackSoundSource.Stop());
    }
 
    private void OnEnable()
@@ -86,7 +89,7 @@ public class RespawnPlayer : MonoBehaviour
     
     private void Kill()
     {
-        Instantiate(this.deathEffect, _spawnEffectPosition.transform.position, _spawnEffectPosition.transform.rotation);
+        Instantiate(this.deathEffect, this.deathEffectPosition.transform.position, this.deathEffectPosition.transform.rotation);
         _audioSource.PlayOneShot(this.deathSound);
         _rigidbody.isKinematic = true;
         this.transform.localScale = Vector3.zero;
@@ -97,9 +100,9 @@ public class RespawnPlayer : MonoBehaviour
     {
         _rigidbody.isKinematic = false;
         this.transform.localScale = new Vector3(1,1,1);        
-        transform.position = _spawnPosition;
+        transform.position = this.spawnLocation.transform.position;
         _rigidbody.velocity = Vector3.zero;
-        _respawnEffect.Play();
+        Instantiate(this.respawnEffect, this.spawnLocation.transform.position, this.spawnLocation.transform.rotation);
         _audioSource.PlayOneShot(this.respawnSound);
         this.isDead = false;
         this.isSpawning = true;

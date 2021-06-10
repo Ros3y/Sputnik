@@ -12,12 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/UI/Level Completion Screen.unity
     guid: 33a3fd1b8389353478fe1e8a7b459ee0
   - enabled: 1
-    path: Assets/Scenes/Chapter 0 (OLD)/Chapter 0 Level 1.unity
-    guid: cde5dac7ee9388049a036cd0242b2d7f
-  - enabled: 1
-    path: Assets/Scenes/Chapter 0 (OLD)/Chapter 0 Level 2.unity
-    guid: 341ca4f244849624d8d9e238a8ea37ac
-  - enabled: 1
-    path: Assets/Scenes/Chapter 0 (OLD)/Chapter 0 Level 3.unity
-    guid: 4d54b5e8abb02644abc6a89061f25e56
+    path: Assets/Scenes/Chapter 0/Chapter 0 Level 1.unity
+    guid: 0717e7c7017dcac4ea4f493c983c7de8
   m_configObjects: {}
