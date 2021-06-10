@@ -67,9 +67,9 @@ public class CoreTransition : MonoBehaviour
                 TweenRenderer(renderers[i]); 
             }
             spotLight.TweenColor(Color.cyan, 1.0f).SetDelay(2.0f);        
+            this.hasTransitioned = true;
         }
         _audioSource.PlayOneShot(this.coreTransitionSound);
-        this.hasTransitioned = true;
     }
 
    

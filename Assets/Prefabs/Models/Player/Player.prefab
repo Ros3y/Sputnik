@@ -286,7 +286,7 @@ MonoBehaviour:
   grenadeSpawn: {fileID: 3048700311736403722}
   grenadePrefab: {fileID: 3583317439737811721, guid: a1efd9c5e7237b149ad8ebfaf1d1c43f, type: 3}
   magazineSize: 5
-  power: 25
+  power: 30
   initialArcPower: 3.3
   shootCooldown: 1
   reloadTimer: 2
@@ -375,12 +375,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Respawn Player Input
       m_Flags: 0
-  _spawnEffectPosition: {fileID: 1017704730}
+  deathEffectPosition: {fileID: 0}
   respawnDelay: 1
+  respawnEffect: {fileID: 0}
   respawnSound: {fileID: 8300000, guid: 9fc03a91b5216b74394a6166059d68f2, type: 3}
   deathEffect: {fileID: 6660517728344796623, guid: b6fef52dcc822ea4abb4c152b461091f, type: 3}
   deathSound: {fileID: 8300000, guid: a7696a2bf114ed3438fefac35ec6ec66, type: 3}
   respawnCooldown: 2
+  spawnLocation: {fileID: 0}
 --- !u!114 &473931024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 368c1f3ae8331174094980eb025f0da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerCore: {fileID: 0}
+  core: {fileID: 0}
 --- !u!114 &1804334685542688053
 MonoBehaviour:
   m_ObjectHideFlags: 0

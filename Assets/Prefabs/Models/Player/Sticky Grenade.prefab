@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 84122428912196951}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.05, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 8597412221518862427}
   m_Father: {fileID: 7480029628305756816}
@@ -202,7 +202,7 @@ Transform:
   m_GameObject: {fileID: 2857584811165245224}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 1.05, z: 1.05}
+  m_LocalScale: {x: 1.1, y: 1.25, z: 1.25}
   m_Children: []
   m_Father: {fileID: 7480029628305756816}
   m_RootOrder: 1
@@ -306,8 +306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e96d461ef38db4f923dc91b97e3897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detonationForce: 10
-  detonationRadius: 10
+  detonationForce: 12.5
+  detonationRadius: 15
   detonationEffect: {fileID: 1329845292236604, guid: 0a0fcbde7c6d09c4f81f3fd6890808b3, type: 3}
   _detonationPosition: {fileID: 0}
   onDetonateDestroy: 1
@@ -326,7 +326,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7854197272954834102
 Rigidbody:

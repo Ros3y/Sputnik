@@ -64,7 +64,7 @@ public class GrenadeBehavior : Destructible
     {
         if(!_hasImpacted)
         {
-            this.transform.position = collision.contacts[0].point + collision.contacts[0].normal * _collider.radius/3;
+            this.transform.position = collision.contacts[0].point + collision.contacts[0].normal * _collider.radius/8.0f;
             _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             _hasImpacted = true;
             _audioSource.PlayOneShot(this.grenadeImpactSound);

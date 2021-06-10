@@ -94,9 +94,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b0d5b02c15c4948854991a7a3375e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnLight: {fileID: 4009501312946330623}
+  pulseLight: {fileID: 4009501312946330623}
+  lightMaterial: {fileID: 0}
   pulseInteveral: 2
   maxIntensity: 8
+  core: {fileID: 0}
 --- !u!1 &8255193214159044278
 GameObject:
   m_ObjectHideFlags: 0
