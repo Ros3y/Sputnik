@@ -17,8 +17,10 @@ public class RigidbodyMovement : MonoBehaviour
     public float maxSpeed;
     private Rigidbody _rigidbody;
     private CapsuleCollider _collider;
-    private Transform _transform;
     public Animator animator;
+    public float quadraticDragCoefficient;
+    public float maxDrag;
+    private bool _isJumping;
 
     
     private void Awake()
@@ -58,6 +60,30 @@ public class RigidbodyMovement : MonoBehaviour
         this.animator.SetFloat("Speed", _rigidbody.velocity.sqrMagnitude);
         this.animator.SetBool("Grounded", isGrounded());
         
+        
+        if( this.quadraticDragCoefficient * (_rigidbody.velocity.sqrMagnitude/2) < this.maxDrag)
+        {
+            _rigidbody.drag = this.quadraticDragCoefficient * (_rigidbody.velocity.sqrMagnitude/2);
+        }
+        else if(this.quadraticDragCoefficient * (_rigidbody.velocity.sqrMagnitude/2) > this.maxDrag)
+        {
+            _rigidbody.drag = this.maxDrag;
+        }
+
+        if(isGrounded() && (this.moveInput.phase != InputActionPhase.Started || this.moveInput.phase == InputActionPhase.Canceled))
+        {
+            _collider.material.dynamicFriction = 0.7f;
+            _collider.material.staticFriction = 1.0f;
+            // if(_rigidbody.velocity.sqrMagnitude < 15.0f)
+            // {
+            //     _rigidbody.velocity = Vector3.zero;    
+            // }
+        }
+        else
+        {
+            _collider.material.dynamicFriction = 0.4f;        
+        }
+        Debug.Log(_collider.material.dynamicFriction);
     }
 
     private void FixedUpdate()
@@ -71,26 +97,29 @@ public class RigidbodyMovement : MonoBehaviour
         this.transform.rotation = rotation;
 
         Vector3 force = Vector3.zero;
-        ForceMode mode = ForceMode.Force;
+        ForceMode mode = ForceMode.Impulse;
 
-        if(canMoveForward())
+
+        if(isGrounded() && canMoveForward())
         {
-            if(isGrounded())
-            {
-                float forceMultiplier = Mathf.Min(this.speed, Mathf.Abs(maxSpeed - velocityMagnitude));
-                force = forward * forceMultiplier;    
-            }
-
-            else
-            {
-                float aerialForceMultiplier = Mathf.Min(this.arealSpeed, Mathf.Abs(maxSpeed - velocityMagnitude));
-                force = forward * aerialForceMultiplier; 
-            }
+            float forceMultiplier = Mathf.Min(this.speed, Mathf.Abs(maxSpeed - velocityMagnitude));
+            force = forward * forceMultiplier;    
+        }
+        else
+        {
+            float aerialForceMultiplier = Mathf.Min(this.arealSpeed, Mathf.Abs(maxSpeed - velocityMagnitude));
+            force = forward * aerialForceMultiplier; 
         }
 
         if(_jetpack.isJetpacking)
         {
-            force += (Vector3.up * _jetpack.jetpackConstantForce) + (Camera.main.transform.forward * _jetpack.jetpackConstantForce);        
+            force += (Vector3.up * _jetpack.jetpackConstantForce) + (Camera.main.transform.forward * (_jetpack.jetpackConstantForce/3));        
+        }
+
+        if(_isJumping)
+        {
+            force += (Vector3.up * jumpMagnitude);
+            _isJumping = false;
         }
 
         if(force.sqrMagnitude > 0.0f)
@@ -128,10 +157,14 @@ public class RigidbodyMovement : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        if(canJump())
+        _isJumping = false;
+        if(canJump() && !context.canceled)
         {
-            ForceMode mode = ForceMode.Impulse;
-            _rigidbody.AddForce(Vector3.up * jumpMagnitude, mode);
+            _isJumping = true;    
+        }
+        else
+        {
+            _isJumping = false;
         }
     }
 
@@ -143,7 +176,7 @@ public class RigidbodyMovement : MonoBehaviour
     private bool canJump()
     {
         bool canJump = false;
-        if(isGrounded())
+        if(isGrounded() && !_isJumping)
         {
             canJump = true;
         }

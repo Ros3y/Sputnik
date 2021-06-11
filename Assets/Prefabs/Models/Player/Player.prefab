@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 7792140477574371825}
   - component: {fileID: 9095632139527623756}
   - component: {fileID: 9095632139527623759}
-  - component: {fileID: 2778217696844637644}
   - component: {fileID: 9095632139527623755}
   - component: {fileID: 9095632139527623754}
   - component: {fileID: 9095632139527623758}
@@ -82,9 +81,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630323568903889327}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0.75
-  m_AngularDrag: 0.05
+  m_Mass: 30
+  m_Drag: 0
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -97,24 +96,10 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630323568903889327}
-  m_Material: {fileID: 13400000, guid: f74717472c94dd54ea60a6463ffb2d8b, type: 2}
+  m_Material: {fileID: 13400000, guid: 4e9bdf62538fc9547a92c5b370faa2df, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.6
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.1, z: 0}
---- !u!136 &2778217696844637644
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 630323568903889327}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -188,8 +173,8 @@ MonoBehaviour:
       m_Flags: 0
   jumpInput:
     m_Name: Jump Input
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: e4ace9b9-9414-42af-9009-8cbaf06e8dfc
     m_Processors: 
     m_Interactions: 
@@ -218,11 +203,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Jump Input
       m_Flags: 0
-  speed: 20
-  arealSpeed: 10
-  jumpMagnitude: 10
-  maxSpeed: 175
+  speed: 5
+  arealSpeed: 2
+  jumpMagnitude: 400
+  maxSpeed: 75
+  feetCollider: {fileID: 9095632139527623759}
   animator: {fileID: 3409427867167675321}
+  quadraticDragCoefficient: 0.025
+  maxDrag: 0.75
 --- !u!114 &9095632139527623754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,9 +320,9 @@ MonoBehaviour:
       m_Action: Jetpack Input
       m_Flags: 0
   maxJetpackFuel: 100
-  jetpackConstantForce: 6
-  fuelDecrementMultiplier: 25
-  fuelIncrementMultiplier: 50
+  jetpackConstantForce: 4.5
+  fuelDecrementMultiplier: 35
+  fuelIncrementMultiplier: 70
   rocketFlame1: {fileID: 2991230956157061014}
   rocketFlame2: {fileID: 6258996523965537817}
   jetpackSoundSource: {fileID: 7057757719435055211}
@@ -420,7 +408,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

@@ -306,8 +306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e96d461ef38db4f923dc91b97e3897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detonationForce: 12.5
-  detonationRadius: 15
+  detonationForce: 500
+  detonationRadius: 20
   detonationEffect: {fileID: 1329845292236604, guid: 0a0fcbde7c6d09c4f81f3fd6890808b3, type: 3}
   _detonationPosition: {fileID: 0}
   onDetonateDestroy: 1
