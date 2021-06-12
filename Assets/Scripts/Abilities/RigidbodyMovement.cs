@@ -83,7 +83,6 @@ public class RigidbodyMovement : MonoBehaviour
         {
             _collider.material.dynamicFriction = 0.4f;        
         }
-        Debug.Log(_collider.material.dynamicFriction);
     }
 
     private void FixedUpdate()

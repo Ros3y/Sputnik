@@ -10,9 +10,8 @@ public class PulsingLight : MonoBehaviour
     public Material lightMaterial;
     public float pulseInteveral;
     public float maxIntensity;
-    public CoreTransition core;
-    private Color _lightColor;
-
+    [HideInInspector]
+    public Color lightColor;
     
     private void Start()
     {
@@ -20,18 +19,10 @@ public class PulsingLight : MonoBehaviour
     }
     private void Update()
     {
-        if(core.hasTransitioned)
-        {
-            _lightColor = Color.cyan;
-        }
-        else
-        {
-            _lightColor = Color.red;
-        }
-        
+       
     }
 
-    private void IncrementIntensity()
+    public void IncrementIntensity()
     {
         if(this.pulseLight != null)
         {
@@ -39,11 +30,11 @@ public class PulsingLight : MonoBehaviour
         }
         if(this.lightMaterial != null)
         {
-            this.lightMaterial.TweenColor(_lightColor, pulseInteveral).OnComplete(DecrementIntensity);    
+            this.lightMaterial.TweenColor(this.lightColor, pulseInteveral).OnComplete(DecrementIntensity);    
         }
     }
 
-    private void DecrementIntensity()
+    public void DecrementIntensity()
     {
         if(this.pulseLight != null)
         {

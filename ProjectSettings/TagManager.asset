@@ -10,6 +10,8 @@ TagManager:
   - Level
   - Smart Light
   - Pulse
+  - No Stick
+  - Power Terminal
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Grenades
   - Death Field
   - Environment
-  - 
+  - Power Terminal
   - 
   - 
   - 

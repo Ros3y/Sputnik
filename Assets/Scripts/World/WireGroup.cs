@@ -5,8 +5,8 @@ using UnityEngine;
 public class WireGroup : MonoBehaviour
 {
     public Pulse pulseNotCorrupt;
-    public float EmitInterval;
-    public float pulseTravelTime;
+    public float EmitInterval = 2.1f;
+    public float pulseTravelTime = 0.05f;
     private Wire[] _wires;
     
     

@@ -64,15 +64,18 @@ public class GrenadeBehavior : Destructible
     {
         if(!_hasImpacted)
         {
-            this.transform.position = collision.contacts[0].point + collision.contacts[0].normal * _collider.radius/8.0f;
-            _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-            _hasImpacted = true;
-            _audioSource.PlayOneShot(this.grenadeImpactSound);
-            _hitmarker.enabled = true;
-            Invoke(nameof(playGrenadeTimer), 0.3f);
+            if(collision.transform.tag != "No Stick")
+            {
+                this.transform.position = collision.contacts[0].point + collision.contacts[0].normal * _collider.radius/6.0f;
+                _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+                _hasImpacted = true;
+                _audioSource.PlayOneShot(this.grenadeImpactSound);
+                _hitmarker.enabled = true;
+                Invoke(nameof(playGrenadeTimer), 0.3f);
 
 
-            Detonate(this.detonationDelay);
+                Detonate(this.detonationDelay);
+            }
         }
     }
 

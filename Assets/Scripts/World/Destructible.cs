@@ -11,6 +11,7 @@ public class Destructible : MonoBehaviour
     public GameObject _detonationPosition;
     public bool onDetonateDestroy;
     public bool hasDetonated { get; private set; }
+    
 
         private void Awake()
         {
@@ -37,7 +38,7 @@ public class Destructible : MonoBehaviour
             if(nearByRigidbody != null)
             {
                nearByRigidbody.AddExplosionForce(this.detonationForce, _detonationPosition.transform.position, detonationRadius, 2.0f, ForceMode.Impulse); 
-            }    
+            }   
         }
 
         this.hasDetonated = true;
