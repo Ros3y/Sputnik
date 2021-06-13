@@ -52,7 +52,6 @@ public class Wire : MonoBehaviour
             }    
         };
         float timeScale = this.pulseTravelTime * pulse.currentWire.gameObject.transform.localScale.z;
-        Debug.Log(pulse);
         pulse.transform.position = this.startPosition.position;
         pulse.transform.TweenPosition(this.endPosition.position, timeScale)
                        .SetEase(Ease.Linear)

@@ -21,6 +21,10 @@ public class RigidbodyMovement : MonoBehaviour
     public float quadraticDragCoefficient;
     public float maxDrag;
     private bool _isJumping;
+    private Vector2 _velocity;
+    private Vector2 _animationDirection;
+
+    public LayerMask layerMask;
 
     
     private void Awake()
@@ -54,13 +58,19 @@ public class RigidbodyMovement : MonoBehaviour
     {
         Vector2 input = this.moveInput.ReadValue<Vector2>();
 
+        _animationDirection = Vector2.SmoothDamp(_animationDirection, input, ref _velocity, 0.2f);
+
+
+
         _direction.x = input.x;
         _direction.z = input.y;
 
+
         this.animator.SetFloat("Speed", _rigidbody.velocity.sqrMagnitude);
         this.animator.SetBool("Grounded", isGrounded());
-        
-        
+        this.animator.SetFloat("xDirection", _animationDirection.x);
+        this.animator.SetFloat("yDirection", _animationDirection.y);
+
         if( this.quadraticDragCoefficient * (_rigidbody.velocity.sqrMagnitude/2) < this.maxDrag)
         {
             _rigidbody.drag = this.quadraticDragCoefficient * (_rigidbody.velocity.sqrMagnitude/2);
@@ -70,14 +80,9 @@ public class RigidbodyMovement : MonoBehaviour
             _rigidbody.drag = this.maxDrag;
         }
 
-        if(isGrounded() && (this.moveInput.phase != InputActionPhase.Started || this.moveInput.phase == InputActionPhase.Canceled))
+        if(isGrounded())
         {
-            _collider.material.dynamicFriction = 0.7f;
-            _collider.material.staticFriction = 1.0f;
-            // if(_rigidbody.velocity.sqrMagnitude < 15.0f)
-            // {
-            //     _rigidbody.velocity = Vector3.zero;    
-            // }
+            _rigidbody.drag = 4.0f;      
         }
         else
         {
@@ -169,7 +174,7 @@ public class RigidbodyMovement : MonoBehaviour
 
     private bool isGrounded()
     {
-        return Physics.BoxCast(this.transform.position, this._collider.bounds.extents / 2, Vector3.down, out RaycastHit hit, this.transform.rotation, this._collider.height /  2);
+        return Physics.BoxCast(this.transform.position, this._collider.bounds.extents / 2, Vector3.down, out RaycastHit hit, this.transform.rotation, this._collider.height /  2, layerMask);
     }
 
     private bool canJump()

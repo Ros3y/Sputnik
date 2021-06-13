@@ -13,6 +13,7 @@ public class WireGroup : MonoBehaviour
     private void Awake()
     {
         _wires = this.GetComponentsInChildren<Wire>();
+        FindObjectOfType<CoreTransition>().transitioned += Delay;
     }
     private void OnValidate()
     {

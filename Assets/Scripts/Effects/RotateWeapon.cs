@@ -19,7 +19,7 @@ public class RotateWeapon : MonoBehaviour
     {
         Transform cameraTransform = Camera.main.transform;
 
-        Vector3 targetPostion = cameraTransform.position + (cameraTransform.forward * 10.0f);
+        Vector3 targetPostion = cameraTransform.position + (cameraTransform.forward * 20.0f);
         Vector3 targetDirection = targetPostion - this.weapon.position;
 
         this.weapon.rotation = Quaternion.LookRotation(targetDirection);

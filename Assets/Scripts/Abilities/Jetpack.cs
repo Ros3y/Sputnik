@@ -19,6 +19,7 @@ public class Jetpack : MonoBehaviour
     public float jetpackConstantForce;
     public float fuelDecrementMultiplier;
     public float fuelIncrementMultiplier;
+    public float rechargeDelay;
     
     // UI
     public float _percentage { get; private set; }
@@ -33,7 +34,7 @@ public class Jetpack : MonoBehaviour
     // Death Mechanics
     private bool _hasDied;
     public float onDeathResetDelay;
-    private float _onDeathFuelResetDelay;
+    private float _onDeathFuelResetDelay = 0.5f;
 
 
     private void Awake()
@@ -42,8 +43,6 @@ public class Jetpack : MonoBehaviour
         _collider = GetComponent<CapsuleCollider>();
 
         this.availableJetpackFuel = maxJetpackFuel;
-
-        //this.jetpackSoundSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -68,39 +67,14 @@ public class Jetpack : MonoBehaviour
          
         UpdateFuel();
         _percentage = (this.availableJetpackFuel/maxJetpackFuel);
-        
-        //OnDeathFuelReset();     
+
+        if(this.availableJetpackFuel <= 0.0f)
+        {
+            rechargeDelay -= Time.deltaTime;
+        }     
     }
 
-    // private void FixedUpdate()
-    // {
-    //     if(_canJetpack)
-    //     {
-    //         ForceMode mode = ForceMode.Force;
-    //         _rigidbody.AddForce(Vector3.up * jetpackConstantForce, mode);     
-    //     }       
-    // }
     
-    // private void OnDeathFuelReset()
-    // {
-    //     if(this.transform.localScale == Vector3.zero)
-    //     {
-    //         _hasDied = true;
-    //     }
-    //     if(_hasDied)
-    //     {
-    //         _onDeathFuelResetDelay -= Time.deltaTime;
-    //     }
-    //     if(_onDeathFuelResetDelay <= 0.0f)
-    //     {
-    //         this.availableJetpackFuel = this.maxJetpackFuel;
-    //         _hasDied = false;
-    //     }
-    //     if(!_hasDied)
-    //     {
-    //         _onDeathFuelResetDelay = this.onDeathResetDelay;
-    //     }        
-    // }
 
     private void UpdateFuel()
     {
@@ -110,10 +84,20 @@ public class Jetpack : MonoBehaviour
             this.availableJetpackFuel = Mathf.Clamp(this.availableJetpackFuel - fuelDecrease, 0.0f, this.maxJetpackFuel);
         }
 
-        else if(isPlayerGrounded())
+        else if(availableJetpackFuel <= 0.0f)
+        {
+            if(rechargeDelay <= 0.0f)
+            {
+                rechargeDelay = 0.5f;
+                float fuelIncrease = Time.deltaTime * this.fuelIncrementMultiplier;     
+                this.availableJetpackFuel = Mathf.Clamp(this.availableJetpackFuel + fuelIncrease, 0.0f, this.maxJetpackFuel);
+            }
+        }
+
+        else
         {
             float fuelIncrease = Time.deltaTime * this.fuelIncrementMultiplier;     
-            this.availableJetpackFuel = Mathf.Clamp(this.availableJetpackFuel + fuelIncrease, 0.0f, this.maxJetpackFuel);
+            this.availableJetpackFuel = Mathf.Clamp(this.availableJetpackFuel + fuelIncrease, 0.0f, this.maxJetpackFuel);   
         }
     }
 

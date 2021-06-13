@@ -5209,6 +5209,10 @@ PrefabInstance:
       propertyPath: jumpMagnitude
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 9095632139527623755, guid: 432b238255b63344095f3000f797fca2, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 1561
+      objectReference: {fileID: 0}
     - target: {fileID: 9095632139527623758, guid: 432b238255b63344095f3000f797fca2, type: 3}
       propertyPath: jetpackConstantForce
       value: 2.5
@@ -10811,7 +10815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4393142787300427216, guid: 7483a6d656c90364997555c53ba68818, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4393142787300427230, guid: 7483a6d656c90364997555c53ba68818, type: 3}
       propertyPath: m_RootOrder

@@ -311,12 +311,10 @@ MonoBehaviour:
   detonationEffect: {fileID: 1329845292236604, guid: 0a0fcbde7c6d09c4f81f3fd6890808b3, type: 3}
   _detonationPosition: {fileID: 0}
   onDetonateDestroy: 1
-  hasDisabled: 0
   detonationDelay: 1
   _grenadeTimerLight: {fileID: 4397485217875521125}
   grenadeImpactSound: {fileID: 8300000, guid: 738e3bff6c9edfe409dcb5b68d82d66a, type: 3}
   grenadeTimerSound: {fileID: 8300000, guid: a275be47b524ef14da89fa5090ef9783, type: 3}
-  disabledEffect: {fileID: 9135065006451601022, guid: 72f40f8e2b8a6764682a15b96614b52c, type: 3}
 --- !u!135 &5828777133443391905
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -449,9 +447,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7480811618889505171}
     m_Modifications:
+    - target: {fileID: 8935700062596021702, guid: bd2ef964cd423e14281ba159ec638735, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935718444596299844, guid: bd2ef964cd423e14281ba159ec638735, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935794824652189000, guid: bd2ef964cd423e14281ba159ec638735, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8936120839190155894, guid: bd2ef964cd423e14281ba159ec638735, type: 3}
       propertyPath: m_Name
       value: Grenade Static
+      objectReference: {fileID: 0}
+    - target: {fileID: 8936120839190155894, guid: bd2ef964cd423e14281ba159ec638735, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8936216241076000688, guid: bd2ef964cd423e14281ba159ec638735, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8941838085667648642, guid: bd2ef964cd423e14281ba159ec638735, type: 3}
       propertyPath: m_RootOrder
@@ -497,7 +515,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8971022247134359116, guid: bd2ef964cd423e14281ba159ec638735, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bd2ef964cd423e14281ba159ec638735, type: 3}
 --- !u!4 &8597412221518862427 stripped
 Transform:

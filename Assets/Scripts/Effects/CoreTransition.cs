@@ -5,6 +5,8 @@ using Zigurous.Tweening;
 
 public class CoreTransition : MonoBehaviour
 {
+    
+    public System.Action transitioned;
     public Color minColor;
     public Color maxColor;
     public Renderer[] renderers;
@@ -49,12 +51,8 @@ public class CoreTransition : MonoBehaviour
         {
             CubeProjection[] cubes = GetComponentsInChildren<CubeProjection>();
             WireGroup[] wires = FindObjectsOfType<WireGroup>();
-
-            for(int i = 0; i < wires.Length; i++)
-            {
-                wires[i].Delay();
-                Debug.Log("bob");
-            }
+            
+            this.transitioned.Invoke();
 
             for(int i = 0; i < cubes.Length; i ++)
             {

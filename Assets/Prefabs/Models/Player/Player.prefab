@@ -203,10 +203,10 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Jump Input
       m_Flags: 0
-  speed: 6
-  arealSpeed: 2.5
+  speed: 10
+  arealSpeed: 3
   jumpMagnitude: 400
-  maxSpeed: 75
+  maxSpeed: 80
   animator: {fileID: 3409427867167675321}
   quadraticDragCoefficient: 0.025
   maxDrag: 0.75
@@ -272,7 +272,7 @@ MonoBehaviour:
       m_Flags: 0
   grenadeSpawn: {fileID: 3048700311736403722}
   grenadePrefab: {fileID: 3583317439737811721, guid: a1efd9c5e7237b149ad8ebfaf1d1c43f, type: 3}
-  magazineSize: 5
+  magazineSize: 6
   power: 150
   initialArcPower: 3.3
   shootCooldown: 1
@@ -319,9 +319,10 @@ MonoBehaviour:
       m_Action: Jetpack Input
       m_Flags: 0
   maxJetpackFuel: 100
-  jetpackConstantForce: 2.5
+  jetpackConstantForce: 2.75
   fuelDecrementMultiplier: 35
-  fuelIncrementMultiplier: 70
+  fuelIncrementMultiplier: 30
+  rechargeDelay: 0
   rocketFlame1: {fileID: 2991230956157061014}
   rocketFlame2: {fileID: 6258996523965537817}
   jetpackSoundSource: {fileID: 7057757719435055211}

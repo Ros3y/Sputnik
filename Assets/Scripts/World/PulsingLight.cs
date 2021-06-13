@@ -3,47 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zigurous.Tweening;
 
-public class PulsingLight : MonoBehaviour
+public class PulsingLight : Pulsing
 {
-    
     public Light pulseLight;
-    public Material lightMaterial;
-    public float pulseInteveral;
     public float maxIntensity;
-    [HideInInspector]
-    public Color lightColor;
     
-    private void Start()
+    protected override void AnimateOn()
     {
-        IncrementIntensity();
-    }
-    private void Update()
-    {
-       
+        this.pulseLight.TweenIntensity(this.maxIntensity, this.pulseInteveral).OnComplete(PulseOff);
     }
 
-    public void IncrementIntensity()
+    protected override void AnimateOff()
     {
-        if(this.pulseLight != null)
-        {
-            this.pulseLight.TweenIntensity(maxIntensity, this.pulseInteveral).OnComplete(DecrementIntensity);
-        }
-        if(this.lightMaterial != null)
-        {
-            this.lightMaterial.TweenColor(this.lightColor, pulseInteveral).OnComplete(DecrementIntensity);    
-        }
+        this.pulseLight.TweenIntensity(0.0f, this.pulseInteveral).OnComplete(PulseOn);
     }
 
-    public void DecrementIntensity()
+    protected override void StopPulsing()
     {
-        if(this.pulseLight != null)
-        {
-            this.pulseLight.TweenIntensity(0.0f, this.pulseInteveral).OnComplete(IncrementIntensity);
-        }
-        if(this.lightMaterial != null)
-        {
-            this.lightMaterial.TweenColor(Color.black, pulseInteveral).OnComplete(IncrementIntensity);
-        }
+        base.StopPulsing();
+
+        this.pulseLight.KillTweens();
+        this.pulseLight.intensity = 0.0f;
     }
 
 }

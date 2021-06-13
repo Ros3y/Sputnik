@@ -2,37 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerTerminal : PulsingLight
+public class PowerTerminal : PulsingMaterial
 {
-    public GrenadeBehavior grenade;
     public ParticleSystem disabledEffect;
     public CoreTransition core;
-    public bool hadCollision;
+    public bool disabled {get; private set; }
 
-    public void Awake()
+    private void Awake()
     {
+        FindObjectOfType<CoreTransition>().transitioned += DisableForeverDelay;
+    }
+    private void EnableTerminal()
+    {
+        this.disabled = false;
         this.lightColor = Color.red;
+        this.disabledEffect.gameObject.SetActive(false);
     }
-    public void Start()
-    {
-        IncrementIntensity();
-    }
-
-    public void Update()
-    {
-        if(core.hasTransitioned)
-        {
-            this.lightColor = Color.cyan;
-        }
-        else
-        {
-            this.lightColor = Color.red;
-        }
-
-    }
-
     private void DisableTerminal()
     {
-        Instantiate(disabledEffect, this.transform.position, this.transform.rotation);
+        if(!this.disabled)
+        {
+            this.disabled = true;
+            this.lightColor = Color.cyan;
+            this.disabledEffect.gameObject.SetActive(true);
+
+            StopPulsing();
+            PulseOn();
+            Invoke(nameof(EnableTerminal), this.pulseInteveral * 4);
+        }
     }
+    private void DisableForeverDelay()
+    {
+        Invoke(nameof(DisableForever), this.pulseInteveral);
+    }
+
+    private void DisableForever()
+    {
+        this.disabled = true;
+        this.lightColor = Color.cyan;
+        this.disabledEffect.gameObject.SetActive(true);
+
+        StopPulsing();
+        PulseOn();   
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.tag == "Grenade")
+        {
+            Invoke(nameof(DisableTerminal), 1.0f);
+        }
+    }
+
 }
