@@ -210,6 +210,9 @@ MonoBehaviour:
   animator: {fileID: 3409427867167675321}
   quadraticDragCoefficient: 0.025
   maxDrag: 0.75
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 537
 --- !u!114 &9095632139527623754
 MonoBehaviour:
   m_ObjectHideFlags: 0
