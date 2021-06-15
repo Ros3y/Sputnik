@@ -7,6 +7,12 @@ public class PulsingLight : Pulsing
 {
     public Light pulseLight;
     public float maxIntensity;
+    public bool transitionWithCore;
+
+    private void Awake()
+    {
+        FindObjectOfType<CoreTransition>().transitioned += Transition;
+    }
     
     protected override void AnimateOn()
     {
@@ -24,6 +30,14 @@ public class PulsingLight : Pulsing
 
         this.pulseLight.KillTweens();
         this.pulseLight.intensity = 0.0f;
+    }
+
+    private void Transition()
+    {
+        if(transitionWithCore)
+        {
+            pulseLight.color = Color.cyan;   
+        }
     }
 
 }

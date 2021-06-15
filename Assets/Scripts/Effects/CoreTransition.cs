@@ -12,15 +12,15 @@ public class CoreTransition : MonoBehaviour
     public Renderer[] renderers;
     public ParticleSystem[] particleSystems;
     public Light spotLight;
-    private AudioSource _audioSource;
+    // private AudioSource _audioSource;
     public AudioClip coreTransitionSound;
     public bool hasTransitioned { get; private set; }
 
     
     private void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.clip = coreTransitionSound;
+        // _audioSource = GetComponent<AudioSource>();
+        // _audioSource.clip = coreTransitionSound;
         hasTransitioned = false;
     }
     private void TweenRenderer(Renderer renderer)
@@ -50,7 +50,6 @@ public class CoreTransition : MonoBehaviour
         if(other.gameObject.tag == "Grenade")
         {
             CubeProjection[] cubes = GetComponentsInChildren<CubeProjection>();
-            WireGroup[] wires = FindObjectsOfType<WireGroup>();
             
             this.transitioned.Invoke();
 
@@ -67,7 +66,7 @@ public class CoreTransition : MonoBehaviour
             spotLight.TweenColor(Color.cyan, 1.0f).SetDelay(2.0f);        
             this.hasTransitioned = true;
         }
-        _audioSource.PlayOneShot(this.coreTransitionSound);
+        // _audioSource.PlayOneShot(this.coreTransitionSound);
     }
 
    

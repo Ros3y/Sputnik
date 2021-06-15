@@ -8,7 +8,6 @@ public class CubeProjection : MonoBehaviour
     public Vector3 normal;
     private Renderer _renderer;
     private float distance = 1.0f;
-    private float timer = 5.5f;
 
     private void Awake()
     {

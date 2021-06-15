@@ -14,6 +14,7 @@ public class GrenadeBehavior : Destructible
     private bool _hasImpacted;
     public float detonationDelay;
     private float _countdown;
+    private float _failsafeDetonationTime = 30.0f;
 
     // Effects
     public Light _grenadeTimerLight;
@@ -58,6 +59,11 @@ public class GrenadeBehavior : Destructible
             _grenadeTimerLight.intensity = Mathf.Lerp(8.0f, 0.0f, _lightTimer);
         }
         _grenadeTimerDelay -= Time.deltaTime;
+        _failsafeDetonationTime -= Time.deltaTime;
+        if(_failsafeDetonationTime <= 0.0f)
+        {
+            Detonate();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -75,6 +81,14 @@ public class GrenadeBehavior : Destructible
 
 
                 Detonate(this.detonationDelay);
+            }
+            if(collision.transform.tag == "Death Field")
+            {
+                Detonate();
+            }
+            if(collision.transform.tag == "Power Core")
+            {
+                Detonate();
             }
         }
     }

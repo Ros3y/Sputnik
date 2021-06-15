@@ -27,14 +27,10 @@ public class Jetpack : MonoBehaviour
     // Effects
     public ParticleSystem rocketFlame1;
     public ParticleSystem rocketFlame2;
+    public ParticleSystem rocketFlame3;
     
     // Audio
     public AudioSource jetpackSoundSource;
-
-    // Death Mechanics
-    private bool _hasDied;
-    public float onDeathResetDelay;
-    private float _onDeathFuelResetDelay = 0.5f;
 
 
     private void Awake()
@@ -106,6 +102,7 @@ public class Jetpack : MonoBehaviour
         this.isJetpacking = true;
         this.rocketFlame1.Play();
         this.rocketFlame2.Play();
+        this.rocketFlame3.Play();
         this.jetpackSoundSource.Play();
         this.jetpackSoundSource.KillTweens();
         this.jetpackSoundSource.TweenVolume(1.0f, 0.50f);
@@ -116,6 +113,7 @@ public class Jetpack : MonoBehaviour
         this.isJetpacking = false;
         this.rocketFlame1.Stop();
         this.rocketFlame2.Stop();
+        this.rocketFlame3.Stop();
         this.jetpackSoundSource.KillTweens();
         this.jetpackSoundSource.TweenVolume(0.0f, 0.25f)
                                .OnComplete(() => this.jetpackSoundSource.Stop());

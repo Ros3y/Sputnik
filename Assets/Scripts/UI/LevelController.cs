@@ -20,7 +20,7 @@ public class LevelController : MonoBehaviour
         _activeScene = SceneManager.GetActiveScene();
         _levelObjects =  _activeScene.GetRootGameObjects();
     
-        GlobalControl.Instance.previousSceneIndex = _activeScene.buildIndex;
+        //GlobalControl.Instance.previousSceneIndex = _activeScene.buildIndex;
         
         _respawnInformation = GetComponent<RespawnPlayer>();
         

@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reticle: {fileID: 8288225799903393269}
-  spread: 64
+  spread: 48
   maxSpread: 128
   decayRate: 128
 --- !u!1 &7571309707597279875
@@ -631,6 +631,14 @@ PrefabInstance:
     - target: {fileID: 3400735344719510318, guid: c87726649c55a4049966c799bef2250b, type: 3}
       propertyPath: m_Name
       value: Reticle-Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794349561834956363, guid: c87726649c55a4049966c799bef2250b, type: 3}
+      propertyPath: _spread
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794349561834956363, guid: c87726649c55a4049966c799bef2250b, type: 3}
+      propertyPath: _color.a
+      value: 0.39215687
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c87726649c55a4049966c799bef2250b, type: 3}

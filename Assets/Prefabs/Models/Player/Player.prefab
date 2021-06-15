@@ -275,7 +275,7 @@ MonoBehaviour:
       m_Flags: 0
   grenadeSpawn: {fileID: 3048700311736403722}
   grenadePrefab: {fileID: 3583317439737811721, guid: a1efd9c5e7237b149ad8ebfaf1d1c43f, type: 3}
-  magazineSize: 6
+  magazineSize: 50
   power: 150
   initialArcPower: 3.3
   shootCooldown: 1
@@ -322,12 +322,13 @@ MonoBehaviour:
       m_Action: Jetpack Input
       m_Flags: 0
   maxJetpackFuel: 100
-  jetpackConstantForce: 2.75
-  fuelDecrementMultiplier: 35
-  fuelIncrementMultiplier: 30
+  jetpackConstantForce: 3.25
+  fuelDecrementMultiplier: 115
+  fuelIncrementMultiplier: 115
   rechargeDelay: 0
   rocketFlame1: {fileID: 2991230956157061014}
   rocketFlame2: {fileID: 6258996523965537817}
+  rocketFlame3: {fileID: 3841788173724339339}
   jetpackSoundSource: {fileID: 7057757719435055211}
   onDeathResetDelay: 1
 --- !u!114 &50102804
@@ -681,6 +682,10 @@ PrefabInstance:
       propertyPath: Loop
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3264563774701160003, guid: 18ae278e98faa8647a8864d14e561773, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3429361155903982688, guid: 18ae278e98faa8647a8864d14e561773, type: 3}
       propertyPath: m_Name
       value: Jetpack (Updated)
@@ -756,6 +761,11 @@ ParticleSystem:
 --- !u!198 &6258996523965537817 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2656584301109118558, guid: 18ae278e98faa8647a8864d14e561773, type: 3}
+  m_PrefabInstance: {fileID: 8215262217757775943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3841788173724339339 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5139377420155032780, guid: 18ae278e98faa8647a8864d14e561773, type: 3}
   m_PrefabInstance: {fileID: 8215262217757775943}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9095632138351963688

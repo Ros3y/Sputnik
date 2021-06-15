@@ -82,11 +82,13 @@ public class RigidbodyMovement : MonoBehaviour
 
         if(isGrounded())
         {
-            _rigidbody.drag = 4.0f;      
+            _rigidbody.drag = 4.0f;
+            _collider.height = 2.0f;              
         }
         else
         {
-            _collider.material.dynamicFriction = 0.4f;        
+            _collider.material.dynamicFriction = 0.4f;
+            _collider.height = 1.5f;        
         }
     }
 
@@ -117,7 +119,7 @@ public class RigidbodyMovement : MonoBehaviour
 
         if(_jetpack.isJetpacking)
         {
-            force += (Vector3.up * _jetpack.jetpackConstantForce) + (Camera.main.transform.forward * (_jetpack.jetpackConstantForce/3));        
+            force += (Vector3.up * _jetpack.jetpackConstantForce) + (Camera.main.transform.forward * (_jetpack.jetpackConstantForce/1.5f));        
         }
 
         if(_isJumping)

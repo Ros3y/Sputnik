@@ -7,7 +7,12 @@ public class PulsingMaterial : Pulsing
 {
     public Renderer[] lightRenderers;
     public Color lightColor;
+    public bool transitionWithCore;
 
+    private void Awake()
+    {
+        FindObjectOfType<CoreTransition>().transitioned += Transition;
+    }
     protected override void AnimateOn()
     {
         for(int i = 0; i < this.lightRenderers.Length; i++)
@@ -21,6 +26,19 @@ public class PulsingMaterial : Pulsing
         for(int i = 0; i < this.lightRenderers.Length; i++)
         {
             this.lightRenderers[i].material.TweenColor(Color.black, this.pulseInteveral).OnComplete(PulseOn);
+        }
+    }
+
+    private void Transition()
+    {
+        if(transitionWithCore)
+        {
+            lightColor = Color.cyan;
+
+            for(int i = 0; i < this.lightRenderers.Length; i++)
+            {
+                this.lightRenderers[i].material.SetColor("_EmissionColor", Color.cyan);
+            }
         }
     }
 
