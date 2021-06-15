@@ -23,7 +23,7 @@ public class CubeProjection : MonoBehaviour
         sequence.Append(this.transform.TweenLocalPosition(endProsition, 0.5f));
         sequence.Append(this.transform.TweenLocalPosition(startPosition, 0.5f).SetDelay(2.0f));
         sequence.Play();
-        _renderer.material.TweenColor(Color.cyan, 1.0f).SetDelay(2.5f);
+        //_renderer.material.TweenColor(Color.cyan, 1.0f).SetDelay(2.5f);
   
         
     }

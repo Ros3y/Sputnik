@@ -11,7 +11,7 @@ public class PulsingMaterial : Pulsing
 
     private void Awake()
     {
-        FindObjectOfType<CoreTransition>().transitioned += Transition;
+        FindObjectOfType<CoreTransition>().transitioned += Delay;
     }
     protected override void AnimateOn()
     {
@@ -21,12 +21,17 @@ public class PulsingMaterial : Pulsing
         }
     }
 
-     protected override void AnimateOff()
+    protected override void AnimateOff()
     {
         for(int i = 0; i < this.lightRenderers.Length; i++)
         {
             this.lightRenderers[i].material.TweenColor(Color.black, this.pulseInteveral).OnComplete(PulseOn);
         }
+    }
+
+    protected virtual void Delay()
+    {
+        Invoke(nameof(Transition), 2.1f);
     }
 
     private void Transition()
