@@ -25,6 +25,7 @@ public class RigidbodyMovement : MonoBehaviour
     private Vector2 _animationDirection;
 
     public LayerMask layerMask;
+    private LevelController _levelController;
 
     
     private void Awake()
@@ -32,6 +33,7 @@ public class RigidbodyMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<CapsuleCollider>();
         _jetpack = GetComponent<Jetpack>();
+        _levelController = GetComponent<LevelController>();
 
         this.jumpInput.performed += OnJump; 
     }
@@ -94,7 +96,15 @@ public class RigidbodyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float yaw = Camera.main.transform.eulerAngles.y;
+        if(!_levelController.isPaused)
+        {
+            Move();
+        }    
+    }
+
+    private void Move()
+    {
+         float yaw = Camera.main.transform.eulerAngles.y;
         Quaternion rotation = Quaternion.AngleAxis(yaw, Vector3.up);
         Vector3 forward = rotation * _direction.normalized;
 

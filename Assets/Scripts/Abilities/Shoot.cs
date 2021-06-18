@@ -9,15 +9,13 @@ public class Shoot : MonoBehaviour
     // Inputs
     private Rigidbody _rigidbody;
     public InputAction shootInput;
-    public InputAction reloadInput;
 
     // Gun
     public Transform grenadeSpawn;
 
     // Ammo
     public GameObject grenadePrefab;
-    public int magazineSize;
-    public int ammoRemaining { get; private set; }
+   
 
     // Shooting
     public float power;
@@ -25,17 +23,11 @@ public class Shoot : MonoBehaviour
     public float shootCooldown;
     private float _coolDownTime;
 
-    // Reload
-    public float reloadTimer;
-    public float reloadDelay;
-    private bool _reloadDelayFinished;
-    private float _reloadDelayTime;
-    private float _dynamicReloadTime;
+    
 
     // Death Mechanics
     public float onDeathResetDelay;
     private float _onDeathAmmoResetDelay;
-    private bool _hasDied;
 
     // Effects
     public Transform muzzleFlashSpawn;
@@ -46,23 +38,24 @@ public class Shoot : MonoBehaviour
     public AudioClip reloadSound;
     private AudioSource _audioSource;
 
+    private LevelController _levelController;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _audioSource = GetComponent<AudioSource>();
 
-        _reloadDelayFinished = true;
+        _levelController = this.GetComponent<LevelController>();
+
+       
 
         _coolDownTime = 0.0f;
-        _reloadDelayTime = 0.0f;
-
-        this.ammoRemaining = this.magazineSize;
+      
 
         _onDeathAmmoResetDelay = this.onDeathResetDelay;
-        _hasDied = false;
 
         this.shootInput.performed += OnShoot;
-        this.reloadInput.performed += OnReload;
+      
 
         _bloom = FindObjectOfType<ReticleBloom>();
     }
@@ -70,13 +63,11 @@ public class Shoot : MonoBehaviour
     private void OnEnable()
     {
         this.shootInput.Enable();
-        this.reloadInput.Enable();
     }
 
     private void OnDisable()
     {
         this.shootInput.Disable();
-        this.reloadInput.Disable();
     }
 
     private void Update()
@@ -85,24 +76,14 @@ public class Shoot : MonoBehaviour
         {
             _coolDownTime -= Time.deltaTime;
         }
-        if(this.ammoRemaining <= 0 && !IsInvoking("Reload"))
-        {
-            _dynamicReloadTime = Mathf.Lerp(0.0f, this.reloadTimer, 1.0f - ((float)(this.ammoRemaining)/(float)(this.magazineSize))) / ((float)(this.magazineSize) - (float)(this.ammoRemaining));
-            InvokeRepeating(nameof(Reload), _dynamicReloadTime, _dynamicReloadTime);
-        }
-
-        OnDeathAmmoReset();
     }
 
     private bool canShoot()
     {
         bool canShoot = false;
-        if((_coolDownTime <= 0.0f) && this.ammoRemaining > 0 && !IsInvoking("Reload"))
+        if((_coolDownTime <= 0.0f) && !_levelController.isPaused)
         {
-            if(_reloadDelayFinished)
-            {
-                canShoot = true;
-            }
+            canShoot = true; 
         }
         return canShoot;
     }
@@ -119,68 +100,9 @@ public class Shoot : MonoBehaviour
             grenade.transform.position = this.grenadeSpawn.position + spawnOffset;
             
             ForceMode mode = ForceMode.Impulse;
-            //_rigidbodyGrenade.AddForce(Vector3.up * this.initialArcPower, mode);
             _rigidbodyGrenade.AddForce( Camera.main.transform.forward * this.power, mode);
             _bloom.Apply();
-            this.ammoRemaining--;
             _coolDownTime = this.shootCooldown;
-            _reloadDelayTime = this.reloadDelay;
         }
-    }
-
-    private void OnReload(InputAction.CallbackContext context)
-    {
-            if(this.ammoRemaining < this.magazineSize && !IsInvoking("Reload"))
-            {
-                _dynamicReloadTime = Mathf.Lerp(0.0f, this.reloadTimer, 1.0f - ((float)(this.ammoRemaining)/(float)(this.magazineSize))) / ((float)(this.magazineSize) - (float)(this.ammoRemaining));
-                InvokeRepeating(nameof(Reload), _dynamicReloadTime, _dynamicReloadTime);
-            }
-
-    }
-
-    private void Reload()
-    {
-        if(this.ammoRemaining < this.magazineSize)
-        {
-            _audioSource.PlayOneShot(this.reloadSound);
-            this.ammoRemaining++;
-        }
-        else
-        {
-            FinishReloading();
-        }
-    }
-
-    private void FinishReloading()
-    {
-        CancelInvoke();
-        _reloadDelayFinished = false;
-        Invoke(nameof(ReloadCooldown), this.reloadDelay);     
-    }
-
-    private void ReloadCooldown()
-    {
-        _reloadDelayFinished = true;
-    }
-
-    private void OnDeathAmmoReset()
-    {
-        if(this.transform.localScale == Vector3.zero)
-        {
-            _hasDied = true;
-        }
-        if(_hasDied)
-        {
-            _onDeathAmmoResetDelay -= Time.deltaTime;
-        }
-        if(_onDeathAmmoResetDelay <= 0.0f)
-        {
-            this.ammoRemaining = this.magazineSize;
-            _hasDied = false;
-        }
-        if(!_hasDied)
-        {
-            _onDeathAmmoResetDelay = this.onDeathResetDelay;
-        }        
     }
 }

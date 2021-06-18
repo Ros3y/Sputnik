@@ -51,6 +51,15 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.postprocessing": {
+      "version": "3.0.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.test-framework": {
       "version": "1.1.20",
       "depth": 0,
@@ -97,7 +106,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "e57e077ea6c57aef593c08d123bc279017a8a51e"
+      "hash": "d7be2b3e039017010454e0e8c78accb0824054ee"
     },
     "com.zigurous.controllers.camera": {
       "version": "https://github.com/zigurous/unity-camera-controller.git",
@@ -106,7 +115,7 @@
       "dependencies": {
         "com.unity.inputsystem": "1.0.2"
       },
-      "hash": "9a1846c455fd6dfa8d7415817c72e30f4c3857c6"
+      "hash": "ec9bb03c22d43569fc623bc656924d3cd94b4310"
     },
     "com.zigurous.datastructures": {
       "version": "https://github.com/zigurous/unity-data-structures.git",

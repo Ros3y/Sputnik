@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Zigurous.Tweening;
+using Zigurous.CameraSystem;
 
 public class RespawnPlayer : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class RespawnPlayer : MonoBehaviour
     private AudioSource _audioSource;
     public bool isSpawning { get; private set; }
     public bool isDead { get; private set; }
+    private Vector2 _orbit;
+    private CameraController _controller;
     
     public Transform spawnLocation;
 
@@ -35,6 +38,11 @@ public class RespawnPlayer : MonoBehaviour
 
         this.isSpawning = true;
         this.transform.position = this.spawnLocation.position;
+        
+        _controller = Camera.main.GetComponent<CameraController>();
+        _orbit = new Vector2(this.spawnLocation.eulerAngles.y, this.spawnLocation.eulerAngles.x);
+        _controller.look.orbit = _orbit;
+
         Instantiate(this.respawnEffect, this.spawnLocation.transform.position, this.spawnLocation.transform.rotation);
         _audioSource.PlayOneShot(this.respawnSound);
         _audioSource.KillTweens();
@@ -93,11 +101,13 @@ public class RespawnPlayer : MonoBehaviour
         _audioSource.PlayOneShot(this.deathSound);
         _rigidbody.isKinematic = true;
         this.transform.localScale = Vector3.zero;
+        _canRespawn = false;
         this.isDead = true;
     }
 
     private void Respawn()
     {
+        _controller.look.orbit = _orbit;
         _rigidbody.isKinematic = false;
         this.transform.localScale = new Vector3(1,1,1);        
         transform.position = this.spawnLocation.transform.position;

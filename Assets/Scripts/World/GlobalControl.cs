@@ -3,23 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Zigurous.DataStructures;
 
-public class GlobalControl : MonoBehaviour
+public class GlobalControl : SingletonBehavior<GlobalControl>
 {
-    public static GlobalControl Instance;
-    public int previousSceneIndex;
-    public float CompletionTIme;
-
-    private void Awake()
-    {
-        if(Instance == null)
-        {
-            //DontDestroyOnLoad(gameObject);
-            Instance = this;
-        }
-        else if(Instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
+    public int currentLevel;
+    public float CompletionTime;
+    public string lastCompletedScene;
+    public Slider sensitivity;
 }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using Zigurous.Tweening;
+using Zigurous.CameraSystem;
 
 public class LevelController : MonoBehaviour
 {
@@ -12,37 +15,58 @@ public class LevelController : MonoBehaviour
     public float completionTime { get; private set; }
     private RespawnPlayer _respawnInformation;
     public CoreTransition core;
-    private bool _levelComplete;
+    public EndLevel level;
+    public InputAction EndLevelInput;
+    public InputAction pauseLevelInput;
+    public GameObject pauseScreen;
+    public bool isPaused { get; private set; }
+    private bool _endLevel;
+    private CameraController _cameraController;
+    public Slider Sensitivity;
     
     
     private void Awake()
     {
         _activeScene = SceneManager.GetActiveScene();
         _levelObjects =  _activeScene.GetRootGameObjects();
-    
-        //GlobalControl.Instance.previousSceneIndex = _activeScene.buildIndex;
+
+        _cameraController = FindObjectOfType<CameraController>();
         
         _respawnInformation = GetComponent<RespawnPlayer>();
         
         this.stopWatch = 0.0f;
 
-        _levelComplete = false;
+        _endLevel = false;
+        this.isPaused = false;
 
+        this.EndLevelInput.performed += OnEndLevel;
+        this.pauseLevelInput.performed += OnPauseLevel;
  
+    }
+
+    private void OnEnable()
+    {
+        this.EndLevelInput.Enable();
+        this.pauseLevelInput.Enable();
+
+        Sensitivity.value = PlayerPrefs.GetFloat("sensitivity", 5);
+    }
+
+    private void OnDisable()
+    {
+        this.EndLevelInput.Disable();
+        this.pauseLevelInput.Disable();
     }
     
     private void Update()
     {
-        if(_respawnInformation.isSpawning && !this.core.hasTransitioned)
+        if(_respawnInformation.isSpawning && !_endLevel)
         {
             this.stopWatch += Time.deltaTime;
         }
-        else if(this.core.hasTransitioned)
+        else if(_endLevel)
         {
             this.completionTime = this.stopWatch;
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
-            _levelComplete = true;
         }
 
         if(_respawnInformation.isDead)
@@ -50,29 +74,118 @@ public class LevelController : MonoBehaviour
             this.stopWatch = 0.0f;
         }
 
-        if(_levelComplete)
+    }
+     public static void LevelSelect(int level)
+    {
+        Time.timeScale = 1.0f;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        GlobalControl.Instance.currentLevel = level;
+        
+        switch(level)
         {
-            GlobalControl.Instance.CompletionTIme = this.completionTime;
-            SceneManager.LoadScene("Level Completion Screen");
+            case 0:
+            SceneManager.LoadScene("Menu Stage");
+            break;
+            
+            case 1:
+            SceneManager.LoadScene("The Gap");
+            break;
+
+            case 2:
+            SceneManager.LoadScene("The Climb");
+            break;
+
+            case 3:
+            SceneManager.LoadScene("Around The Bend");
+            break;
+
+            case 4:
+            SceneManager.LoadScene("Hop Skip And A Jump");
+            break;
+
+            case 5:
+            SceneManager.LoadScene("Reflections");
+            break;
+
+            case 6:
+            SceneManager.LoadScene("Pillars");
+            break;
+
+            case 7:
+            SceneManager.LoadScene("Demo End");
+            break;
+
+        }
+         
+    }
+
+    private void OnEndLevel(InputAction.CallbackContext context)
+    {
+        if(level.canEnd)
+        {
+            _endLevel = true;
+
+            GlobalControl.Instance.CompletionTime = this.stopWatch;
+
+            if(this.stopWatch < PlayerPrefs.GetFloat(_activeScene.name, float.MaxValue))
+            {
+                PlayerPrefs.SetFloat(_activeScene.name, this.stopWatch);
+                PlayerPrefs.Save();  
+            }
+            
+
+            GlobalControl.Instance.lastCompletedScene = _activeScene.name;
+            
+            SceneManager.LoadScene("Level Complete Stage");
+        }
+    }
+    private void OnPauseLevel(InputAction.CallbackContext context)
+    {
+        if(this.pauseScreen.activeSelf)
+        {
+            this.isPaused = false;
+            Time.timeScale = 1.0f;
+            this.pauseScreen.SetActive(false);
+            _cameraController.look.enabled = true;
+            AudioListener.pause = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        else if(!this.pauseScreen.activeSelf)
+        {
+            this.isPaused = true;
+            Time.timeScale = 0.0f;
+            this.pauseScreen.SetActive(true);
+            _cameraController.look.enabled = false;
+            AudioListener.pause = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
         }
     }
 
     public void reloadScene()
     {
-        SceneManager.LoadScene(GlobalControl.Instance.previousSceneIndex);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;        
+        LevelSelect(GlobalControl.Instance.currentLevel);       
     }
 
     public void loadNextScene()
     {
-        SceneManager.LoadScene(GlobalControl.Instance.previousSceneIndex + 1);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        LevelSelect(GlobalControl.Instance.currentLevel + 1);    
     }
 
     public void SavePlayer()
     {
-        GlobalControl.Instance.CompletionTIme = this.completionTime;
+        GlobalControl.Instance.CompletionTime = this.completionTime;
+    }
+    public void SetSensitivity(float sensitivity)
+    {
+        PlayerPrefs.SetFloat("sensitivity", sensitivity);
+        // PlayerPrefs.GetFloat("sensitivity")
+        if(_cameraController != null)
+        {
+            _cameraController.look.sensitivity = new Vector2(sensitivity, sensitivity);
+        }
     }
 }

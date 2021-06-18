@@ -6,12 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/UI/Menu.unity
-    guid: 036a1ee33938ad14d8491d3be5f1de84
+    path: Assets/Scenes/Menus/Menu Stage.unity
+    guid: 9c06cf78de57be944a5ae7ac05d68e68
   - enabled: 1
-    path: Assets/Scenes/UI/Level Completion Screen.unity
-    guid: 33a3fd1b8389353478fe1e8a7b459ee0
+    path: Assets/Scenes/Menus/Level Complete Stage.unity
+    guid: 1b99140c10a834641bb4da247895914a
   - enabled: 1
-    path: Assets/Scenes/Chapter 0/Chapter 0 Level 1.unity
+    path: Assets/Scenes/Levels/The Gap.unity
     guid: 0717e7c7017dcac4ea4f493c983c7de8
+  - enabled: 1
+    path: Assets/Scenes/Levels/The Climb.unity
+    guid: a0ead00aac0a51b43ab3f5ea5967d255
+  - enabled: 1
+    path: Assets/Scenes/Levels/Around The Bend.unity
+    guid: 152678a179696ac4a8b06e21a23e0f40
+  - enabled: 1
+    path: Assets/Scenes/Levels/Hop Skip and a Jump.unity
+    guid: e80cb0615893ba044b7c54c3ec665535
+  - enabled: 1
+    path: Assets/Scenes/Levels/Reflections.unity
+    guid: f9cb2d4118f86fc4ebd9fd83ee1ae3df
+  - enabled: 1
+    path: Assets/Scenes/Levels/Pillars.unity
+    guid: 007199aecf4112342bdd0df2918e7529
+  - enabled: 1
+    path: Assets/Scenes/Menus/Demo End.unity
+    guid: 04b7abce16afd864bb60699491c32f71
   m_configObjects: {}

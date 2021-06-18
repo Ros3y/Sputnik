@@ -10,7 +10,7 @@ public class HUD : MonoBehaviour
     private RectTransform _fuelTankBarRectTransform;
     public Image fuelTank;
     public Image fuelTankBar;
-    public Text ammo;
+    // public Text ammo;
     private Shoot _shoot;
     public Text stopWatch;
     private LevelController _levelInformation;
@@ -27,9 +27,5 @@ public class HUD : MonoBehaviour
     private void Update()
     {
         _fuelTankBarRectTransform.sizeDelta = new Vector2(((_fuelTankRectTransform.rect.width) * _jetpack._percentage), _fuelTankBarRectTransform.sizeDelta.y);
-
-        this.ammo.text = _shoot.ammoRemaining.ToString();
-
-        this.stopWatch.text = _levelInformation.stopWatch.ToString();
     }
 }

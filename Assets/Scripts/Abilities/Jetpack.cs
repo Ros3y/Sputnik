@@ -32,11 +32,14 @@ public class Jetpack : MonoBehaviour
     // Audio
     public AudioSource jetpackSoundSource;
 
+    private LevelController _levelController;
+
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<CapsuleCollider>();
+        _levelController = GetComponent<LevelController>();
 
         this.availableJetpackFuel = maxJetpackFuel;
     }
@@ -121,7 +124,14 @@ public class Jetpack : MonoBehaviour
 
     private bool CanJetpack()
     {
-        return this.jetpackInput.phase == InputActionPhase.Started && this.availableJetpackFuel > 0.0f && !isPlayerGrounded();
+        if(_levelController.isPaused)
+        {
+            return false;
+        }
+        else
+        {
+            return this.jetpackInput.phase == InputActionPhase.Started && this.availableJetpackFuel > 0.0f && !isPlayerGrounded();
+        }
     }
 
     private bool isPlayerGrounded()

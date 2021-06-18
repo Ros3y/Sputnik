@@ -12,15 +12,16 @@ public class CoreTransition : MonoBehaviour
     public Renderer[] renderers;
     public ParticleSystem[] particleSystems;
     public Light spotLight;
-    // private AudioSource _audioSource;
+    private AudioSource _audioSource;
     public AudioClip coreTransitionSound;
+    public bool transition;
     public bool hasTransitioned { get; private set; }
 
     
     private void Awake()
     {
-        // _audioSource = GetComponent<AudioSource>();
-        // _audioSource.clip = coreTransitionSound;
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = coreTransitionSound;
         hasTransitioned = false;
     }
     private void TweenRenderer(Renderer renderer)
@@ -64,9 +65,33 @@ public class CoreTransition : MonoBehaviour
                 TweenRenderer(renderers[i]); 
             }
             spotLight.TweenColor(Color.cyan, 1.0f).SetDelay(2.0f);        
+            if(!this.hasTransitioned)
+            {
+                _audioSource.PlayOneShot(this.coreTransitionSound);
+            }
             this.hasTransitioned = true;
         }
-        // _audioSource.PlayOneShot(this.coreTransitionSound);
+    }
+
+    private void Update()
+    {
+        if(transition && !hasTransitioned)
+        {
+            this.transitioned.Invoke();
+            CubeProjection[] cubes = GetComponentsInChildren<CubeProjection>();
+            for(int i = 0; i < cubes.Length; i ++)
+            {
+                cubes[i].enabled = true;
+            }
+            setParticleColors();
+
+            for(int i = 0; i < renderers.Length; i++)
+            {
+                TweenRenderer(renderers[i]); 
+            }
+            spotLight.TweenColor(Color.cyan, 1.0f).SetDelay(2.0f);        
+            this.hasTransitioned = true;
+        }
     }
 
    
