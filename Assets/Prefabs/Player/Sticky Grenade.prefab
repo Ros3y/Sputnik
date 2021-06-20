@@ -306,11 +306,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e96d461ef38db4f923dc91b97e3897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detonationForce: 700
-  detonationRadius: 20
+  detonationForce: 715
+  detonationRadius: 22.5
   detonationEffect: {fileID: 1329845292236604, guid: 0a0fcbde7c6d09c4f81f3fd6890808b3, type: 3}
   _detonationPosition: {fileID: 0}
   onDetonateDestroy: 1
+  player: {fileID: 630323568903889327, guid: 432b238255b63344095f3000f797fca2, type: 3}
   detonationDelay: 1
   _grenadeTimerLight: {fileID: 4397485217875521125}
   grenadeImpactSound: {fileID: 8300000, guid: 738e3bff6c9edfe409dcb5b68d82d66a, type: 3}

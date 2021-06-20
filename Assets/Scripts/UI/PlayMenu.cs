@@ -65,11 +65,11 @@ public class PlayMenu : MonoBehaviour
     {
         if(this.time != null)
         {
-            this.time.text = System.Math.Round(GlobalControl.Instance.CompletionTime, 2).ToString() + " Seconds";
+            this.time.text = System.Math.Round(GlobalControl.Instance.CompletionTime, 2).ToString() + " s";
         }
         if(this.bestTime != null)
         {
-            this.bestTime.text = System.Math.Round(PlayerPrefs.GetFloat(GlobalControl.Instance.lastCompletedScene), 2).ToString() + " Seconds";
+            this.bestTime.text = System.Math.Round(PlayerPrefs.GetFloat(GlobalControl.Instance.lastCompletedScene), 2).ToString() + " s";
         }
     } 
 }

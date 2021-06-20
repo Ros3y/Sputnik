@@ -85,13 +85,17 @@ public class RigidbodyMovement : MonoBehaviour
         if(isGrounded())
         {
             _rigidbody.drag = 4.0f;
-            _collider.height = 2.0f;              
+            _collider.height = 2.0f;
+            GlobalControl.Instance.playerIsGrounded = true;              
         }
         else
         {
             _collider.material.dynamicFriction = 0.4f;
-            _collider.height = 1.5f;        
+            _collider.height = 1.5f;
+            GlobalControl.Instance.playerIsGrounded = false;        
         }
+
+        Debug.Log(GlobalControl.Instance.playerIsGrounded);
     }
 
     private void FixedUpdate()
@@ -184,7 +188,7 @@ public class RigidbodyMovement : MonoBehaviour
         }
     }
 
-    private bool isGrounded()
+    public bool isGrounded()
     {
         return Physics.BoxCast(this.transform.position, this._collider.bounds.extents / 2, Vector3.down, out RaycastHit hit, this.transform.rotation, this._collider.height /  2, layerMask);
     }

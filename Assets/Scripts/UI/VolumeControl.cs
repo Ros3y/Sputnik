@@ -10,13 +10,14 @@ public class VolumeControl : MonoBehaviour
     public Slider volume;
     public Slider musicVolume;
     public Slider sfxVolume;
+
     
     
     private void OnEnable()
     {
         volume.value = PlayerPrefs.GetFloat("volume", 1.0f);
         musicVolume.value = PlayerPrefs.GetFloat("musicVolume", 0.65f);
-        sfxVolume.value = PlayerPrefs.GetFloat("sfxVolume", 0.85f);
+        sfxVolume.value = PlayerPrefs.GetFloat("sfxVolume", 0.85f);   
     }
     private void Start()
     {

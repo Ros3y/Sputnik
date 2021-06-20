@@ -127,7 +127,7 @@ MonoBehaviour:
         m_Id: 1c0bac31-c3c5-4b7c-a738-46951ce27737
         m_Path: 2DVector(mode=2)
         m_Interactions: 
-        m_Processors: stickDeadzone,ScaleVector2(x=0.5,y=0.5)
+        m_Processors: ScaleVector2,stickDeadzone
         m_Groups: 
         m_Action: CameraLook
         m_Flags: 4
@@ -213,7 +213,7 @@ MonoBehaviour:
     m_Bits: 2048
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 1
+  antialiasingMode: 3
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25

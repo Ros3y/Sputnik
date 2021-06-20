@@ -11,4 +11,5 @@ public class GlobalControl : SingletonBehavior<GlobalControl>
     public float CompletionTime;
     public string lastCompletedScene;
     public Slider sensitivity;
+    public bool playerIsGrounded;
 }

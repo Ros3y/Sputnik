@@ -106,7 +106,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "d7be2b3e039017010454e0e8c78accb0824054ee"
+      "hash": "3aa89a0acd0d180abb5eda0a284a96e838109b8e"
     },
     "com.zigurous.controllers.camera": {
       "version": "https://github.com/zigurous/unity-camera-controller.git",

@@ -11,11 +11,14 @@ public class Destructible : MonoBehaviour
     public GameObject _detonationPosition;
     public bool onDetonateDestroy;
     public bool hasDetonated { get; private set; }
+    public GameObject player;
+    private RigidbodyMovement _playerInfo;
     
 
         private void Awake()
         {
             this.hasDetonated = false;
+            _playerInfo = player.GetComponent<RigidbodyMovement>();
         }
         public void Detonate()
         {
@@ -37,7 +40,15 @@ public class Destructible : MonoBehaviour
             Rigidbody nearByRigidbody = nearByObject.GetComponent<Rigidbody>();
             if(nearByRigidbody != null)
             {
-               nearByRigidbody.AddExplosionForce(this.detonationForce, _detonationPosition.transform.position, detonationRadius, 2.0f, ForceMode.Impulse); 
+               if(nearByObject.tag == "Player" && GlobalControl.Instance.playerIsGrounded == true)
+               {
+                    Debug.Log("grounded boom");
+                    nearByRigidbody.AddExplosionForce(this.detonationForce * 1.25f, _detonationPosition.transform.position, detonationRadius, 2.0f, ForceMode.Impulse); 
+               }
+               else
+               {
+                    nearByRigidbody.AddExplosionForce(this.detonationForce, _detonationPosition.transform.position, detonationRadius, 3.0f, ForceMode.Impulse); 
+               }
             }   
         }
 

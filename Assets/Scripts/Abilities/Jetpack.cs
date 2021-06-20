@@ -70,7 +70,17 @@ public class Jetpack : MonoBehaviour
         if(this.availableJetpackFuel <= 0.0f)
         {
             rechargeDelay -= Time.deltaTime;
-        }     
+        }
+
+        if(isPlayerGrounded())
+        {
+            GlobalControl.Instance.playerIsGrounded = true;
+        }
+        else
+        {
+            GlobalControl.Instance.playerIsGrounded = false;
+        }
+             
     }
 
     

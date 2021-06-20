@@ -22,7 +22,6 @@ public class LevelController : MonoBehaviour
     public bool isPaused { get; private set; }
     private bool _endLevel;
     private CameraController _cameraController;
-    public Slider Sensitivity;
     
     
     private void Awake()
@@ -44,12 +43,13 @@ public class LevelController : MonoBehaviour
  
     }
 
+
     private void OnEnable()
     {
         this.EndLevelInput.Enable();
         this.pauseLevelInput.Enable();
+        // Sensitivity.value = PlayerPrefs.GetFloat("sensitivity", 1.5f);
 
-        Sensitivity.value = PlayerPrefs.GetFloat("sensitivity", 5);
     }
 
     private void OnDisable()
@@ -77,9 +77,6 @@ public class LevelController : MonoBehaviour
     }
      public static void LevelSelect(int level)
     {
-        Time.timeScale = 1.0f;
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
         GlobalControl.Instance.currentLevel = level;
         
         switch(level)
@@ -178,14 +175,5 @@ public class LevelController : MonoBehaviour
     public void SavePlayer()
     {
         GlobalControl.Instance.CompletionTime = this.completionTime;
-    }
-    public void SetSensitivity(float sensitivity)
-    {
-        PlayerPrefs.SetFloat("sensitivity", sensitivity);
-        // PlayerPrefs.GetFloat("sensitivity")
-        if(_cameraController != null)
-        {
-            _cameraController.look.sensitivity = new Vector2(sensitivity, sensitivity);
-        }
     }
 }
