@@ -6643,6 +6643,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6298594890874393548, guid: 126c500819b795046b4980931e56eefc, type: 3}
+      propertyPath: songs.Array.size
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298594890874393548, guid: 126c500819b795046b4980931e56eefc, type: 3}
+      propertyPath: songs.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: b35c5d2a06c1bf3429deaf58e93a7db6, type: 3}
+    - target: {fileID: 6298594890874393548, guid: 126c500819b795046b4980931e56eefc, type: 3}
+      propertyPath: songs.Array.data[10]
+      value: 
+      objectReference: {fileID: 8300000, guid: b35c5d2a06c1bf3429deaf58e93a7db6, type: 3}
+    - target: {fileID: 6298594890874393548, guid: 126c500819b795046b4980931e56eefc, type: 3}
+      propertyPath: songs.Array.data[11]
+      value: 
+      objectReference: {fileID: 8300000, guid: b35c5d2a06c1bf3429deaf58e93a7db6, type: 3}
+    - target: {fileID: 6298594890874393548, guid: 126c500819b795046b4980931e56eefc, type: 3}
+      propertyPath: songs.Array.data[12]
+      value: 
+      objectReference: {fileID: 8300000, guid: b35c5d2a06c1bf3429deaf58e93a7db6, type: 3}
+    - target: {fileID: 6298594890874393548, guid: 126c500819b795046b4980931e56eefc, type: 3}
+      propertyPath: songs.Array.data[13]
+      value: 
+      objectReference: {fileID: 8300000, guid: b35c5d2a06c1bf3429deaf58e93a7db6, type: 3}
+    - target: {fileID: 6298594890874393548, guid: 126c500819b795046b4980931e56eefc, type: 3}
+      propertyPath: songs.Array.data[14]
+      value: 
+      objectReference: {fileID: 8300000, guid: b35c5d2a06c1bf3429deaf58e93a7db6, type: 3}
+    - target: {fileID: 6298594890874393548, guid: 126c500819b795046b4980931e56eefc, type: 3}
+      propertyPath: songs.Array.data[15]
+      value: 
+      objectReference: {fileID: 8300000, guid: b35c5d2a06c1bf3429deaf58e93a7db6, type: 3}
+    - target: {fileID: 6298594890874393548, guid: 126c500819b795046b4980931e56eefc, type: 3}
+      propertyPath: songs.Array.data[16]
+      value: 
+      objectReference: {fileID: 8300000, guid: b35c5d2a06c1bf3429deaf58e93a7db6, type: 3}
+    - target: {fileID: 6298594890874393548, guid: 126c500819b795046b4980931e56eefc, type: 3}
+      propertyPath: songs.Array.data[17]
+      value: 
+      objectReference: {fileID: 8300000, guid: b35c5d2a06c1bf3429deaf58e93a7db6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 126c500819b795046b4980931e56eefc, type: 3}
 --- !u!1001 &1092125041

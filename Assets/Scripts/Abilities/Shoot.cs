@@ -81,7 +81,7 @@ public class Shoot : MonoBehaviour
     private bool canShoot()
     {
         bool canShoot = false;
-        if((_coolDownTime <= 0.0f) && !_levelController.isPaused)
+        if((_coolDownTime <= 0.0f) && !_levelController.isPaused && GlobalControl.Instance.isDead == false)
         {
             canShoot = true; 
         }

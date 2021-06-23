@@ -12,4 +12,5 @@ public class GlobalControl : SingletonBehavior<GlobalControl>
     public string lastCompletedScene;
     public Slider sensitivity;
     public bool playerIsGrounded;
+    public bool isDead;
 }

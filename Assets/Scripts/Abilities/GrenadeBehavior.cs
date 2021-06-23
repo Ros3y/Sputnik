@@ -82,10 +82,10 @@ public class GrenadeBehavior : Destructible
 
                 Detonate(this.detonationDelay);
             }
-            // if(collision.transform.tag == "Death Field")
-            // {
-            //     Detonate();
-            // }
+            if(collision.transform.tag == "Death Field")
+            {
+                Detonate();
+            }
             if(collision.transform.tag == "Power Core")
             {
                 Detonate();

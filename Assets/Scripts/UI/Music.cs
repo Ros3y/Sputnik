@@ -56,6 +56,43 @@ public class Music : MonoBehaviour
             case 8:
             _audioSource.clip = songs[8];
             break;
+
+            case 9:
+            _audioSource.clip = songs[9];
+            break;
+
+            case 10:
+            _audioSource.clip = songs[10];
+            break;
+
+            case 11:
+            _audioSource.clip = songs[11];
+            break;
+
+            case 12:
+            _audioSource.clip = songs[12];
+            break;
+
+            case 13:
+            _audioSource.clip = songs[13];
+            break;
+
+            case 14:
+            _audioSource.clip = songs[14];
+            break;
+
+             case 15:
+            _audioSource.clip = songs[15];
+            break;
+
+             case 16:
+            _audioSource.clip = songs[16];
+            break;
+
+             case 17:
+            _audioSource.clip = songs[17];
+            break;
+
         }
     }
 }

@@ -90,7 +90,7 @@ public class LevelController : MonoBehaviour
             break;
 
             case 2:
-            SceneManager.LoadScene("The Climb");
+            SceneManager.LoadScene("The Rise");
             break;
 
             case 3:
@@ -110,6 +110,42 @@ public class LevelController : MonoBehaviour
             break;
 
             case 7:
+            SceneManager.LoadScene("Back and Forth");
+            break;
+
+            case 8:
+            SceneManager.LoadScene("Pitfall");
+            break;
+
+            case 9:
+            SceneManager.LoadScene("Claustrophobia");
+            break;
+
+            case 10:
+            SceneManager.LoadScene("Pinball");
+            break;
+
+            case 11:
+            SceneManager.LoadScene("Ahead of the Curve");
+            break;
+
+            case 12:
+            SceneManager.LoadScene("Sheer Cliff");
+            break;
+
+            case 13:
+            SceneManager.LoadScene("Precision Flying");
+            break;
+
+            case 14:
+            SceneManager.LoadScene("Over and Under");
+            break;
+
+            case 15:
+            SceneManager.LoadScene("Peak Performance");
+            break;
+
+            case 16:
             SceneManager.LoadScene("Demo End");
             break;
 

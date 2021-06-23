@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/The Gap.unity
     guid: 0717e7c7017dcac4ea4f493c983c7de8
   - enabled: 1
-    path: Assets/Scenes/Levels/The Climb.unity
+    path: Assets/Scenes/Levels/The Rise.unity
     guid: a0ead00aac0a51b43ab3f5ea5967d255
   - enabled: 1
     path: Assets/Scenes/Levels/Around The Bend.unity
@@ -29,6 +29,33 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Pillars.unity
     guid: 007199aecf4112342bdd0df2918e7529
+  - enabled: 1
+    path: Assets/Scenes/Levels/Back and Forth.unity
+    guid: c774b23eeb8e452479da545e2d74ca57
+  - enabled: 1
+    path: Assets/Scenes/Levels/Pitfall.unity
+    guid: 362b897ebe1200e47b661ed10c5d4280
+  - enabled: 1
+    path: Assets/Scenes/Levels/Claustrophobia.unity
+    guid: 191cbe932192d7e42b42f341429ef1c3
+  - enabled: 1
+    path: Assets/Scenes/Levels/Pinball.unity
+    guid: c2d9cca1e727be2448d69fd99e015572
+  - enabled: 1
+    path: Assets/Scenes/Levels/Ahead of the Curve.unity
+    guid: ac81325d9ac435c4e8f180635b04040c
+  - enabled: 1
+    path: Assets/Scenes/Levels/Sheer Cliff.unity
+    guid: 56508ec1da0da394cada162db4dce5d6
+  - enabled: 1
+    path: Assets/Scenes/Levels/Precision Flying.unity
+    guid: cc8ccdbbcec27d94cb6784660a9ff66e
+  - enabled: 1
+    path: Assets/Scenes/Levels/Over and Under.unity
+    guid: cc3fe110741ce1a4ab060b4adf0fb222
+  - enabled: 1
+    path: Assets/Scenes/Levels/Peak Performance.unity
+    guid: f3697aaa0cf70734ebc4b9cca268c2ca
   - enabled: 1
     path: Assets/Scenes/Menus/Demo End.unity
     guid: 04b7abce16afd864bb60699491c32f71

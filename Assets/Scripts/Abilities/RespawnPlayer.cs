@@ -103,6 +103,7 @@ public class RespawnPlayer : MonoBehaviour
         this.transform.localScale = Vector3.zero;
         _canRespawn = false;
         this.isDead = true;
+        GlobalControl.Instance.isDead = true;
     }
 
     private void Respawn()
@@ -115,6 +116,7 @@ public class RespawnPlayer : MonoBehaviour
         Instantiate(this.respawnEffect, this.spawnLocation.transform.position, this.spawnLocation.transform.rotation);
         _audioSource.PlayOneShot(this.respawnSound);
         this.isDead = false;
+        GlobalControl.Instance.isDead = false;
         this.isSpawning = true;
     }
 }
