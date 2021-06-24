@@ -13,5 +13,6 @@ public class InstantiateLevel : MonoBehaviour
         Cursor.visible = this.visible;
         Cursor.lockState = locked;
         AudioListener.pause = false;
+        GlobalControl.Instance.isDead = false;
     }
 }
