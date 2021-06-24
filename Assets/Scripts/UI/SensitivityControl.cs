@@ -12,7 +12,7 @@ public class SensitivityControl : MonoBehaviour
 
     private void OnEnable()
     {
-        Sensitivity.value = PlayerPrefs.GetFloat("sensitivity", 0.75f);
+        Sensitivity.value = PlayerPrefs.GetFloat("sensitivity", 0.5f);
     }
 
     private void Awake()
@@ -24,7 +24,8 @@ public class SensitivityControl : MonoBehaviour
     {
         if(_cameraController != null)
         {
-            _cameraController.look.sensitivity = new Vector2(PlayerPrefs.GetFloat("sensitivity", 0.75f), PlayerPrefs.GetFloat("sensitivity", 0.75f));
+            float value = Mathf.Lerp(0.1f, 2.0f, PlayerPrefs.GetFloat("sensitivity", 0.5f));
+            _cameraController.look.sensitivity = new Vector2(value, value);
         }
     }
   
@@ -33,7 +34,8 @@ public class SensitivityControl : MonoBehaviour
         PlayerPrefs.SetFloat("sensitivity", sensitivity);
         if(_cameraController != null)
         {
-            _cameraController.look.sensitivity = new Vector2(sensitivity, sensitivity);
+            float value = Mathf.Lerp(0.1f, 2.0f, sensitivity);
+            _cameraController.look.sensitivity = new Vector2(value, value);
         }
     }
 }
