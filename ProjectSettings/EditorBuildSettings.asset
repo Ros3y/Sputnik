@@ -45,6 +45,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Ahead of the Curve.unity
     guid: ac81325d9ac435c4e8f180635b04040c
   - enabled: 1
+    path: Assets/Scenes/Levels/Going Up.unity
+    guid: 234667b8f5e1c5849ba32b08e3cdbe26
+  - enabled: 1
     path: Assets/Scenes/Levels/Sheer Cliff.unity
     guid: 56508ec1da0da394cada162db4dce5d6
   - enabled: 1

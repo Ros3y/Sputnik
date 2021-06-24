@@ -108,9 +108,9 @@ public class LevelController : MonoBehaviour
             case 6:
             SceneManager.LoadScene("Pillars");
             break;
-
+            
             case 7:
-            SceneManager.LoadScene("Back and Forth");
+            SceneManager.LoadScene("Precision Flying");
             break;
 
             case 8:
@@ -122,11 +122,11 @@ public class LevelController : MonoBehaviour
             break;
 
             case 10:
-            SceneManager.LoadScene("Pinball");
+            SceneManager.LoadScene("Back and Forth");
             break;
 
             case 11:
-            SceneManager.LoadScene("Ahead of the Curve");
+            SceneManager.LoadScene("Going Up");
             break;
 
             case 12:
@@ -134,7 +134,7 @@ public class LevelController : MonoBehaviour
             break;
 
             case 13:
-            SceneManager.LoadScene("Precision Flying");
+            SceneManager.LoadScene("Pinball");
             break;
 
             case 14:
@@ -142,10 +142,14 @@ public class LevelController : MonoBehaviour
             break;
 
             case 15:
-            SceneManager.LoadScene("Peak Performance");
+            SceneManager.LoadScene("Ahead of the Curve");
             break;
 
             case 16:
+            SceneManager.LoadScene("Peak Performance");
+            break;
+
+            case 17:
             SceneManager.LoadScene("Demo End");
             break;
 
