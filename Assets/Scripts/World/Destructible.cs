@@ -42,7 +42,6 @@ public class Destructible : MonoBehaviour
             {
                if(nearByObject.tag == "Player" && GlobalControl.Instance.playerIsGrounded == true)
                {
-                    Debug.Log("grounded boom");
                     nearByRigidbody.AddExplosionForce(this.detonationForce * 1.25f, _detonationPosition.transform.position, detonationRadius, 2.0f, ForceMode.Impulse); 
                }
                else

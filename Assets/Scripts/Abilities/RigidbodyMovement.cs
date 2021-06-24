@@ -94,8 +94,6 @@ public class RigidbodyMovement : MonoBehaviour
             _collider.height = 1.5f;
             GlobalControl.Instance.playerIsGrounded = false;        
         }
-
-        Debug.Log(GlobalControl.Instance.playerIsGrounded);
     }
 
     private void FixedUpdate()

@@ -43,7 +43,8 @@ public class PowerTerminal : PulsingMaterial
         this.disabledEffect.gameObject.SetActive(true);
 
         StopPulsing();
-        PulseOn();   
+        PulseOn();
+        CancelInvoke();   
     }
     private void OnCollisionEnter(Collision collision)
     {
