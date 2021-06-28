@@ -106,7 +106,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "3aa89a0acd0d180abb5eda0a284a96e838109b8e"
+      "hash": "2d16b170fd3766ba17e35b2f2a53ca53464719cf"
     },
     "com.zigurous.controllers.camera": {
       "version": "https://github.com/zigurous/unity-camera-controller.git",
@@ -115,14 +115,14 @@
       "dependencies": {
         "com.unity.inputsystem": "1.0.2"
       },
-      "hash": "ec9bb03c22d43569fc623bc656924d3cd94b4310"
+      "hash": "c2685247e0286c5554b9e68d57a98dce8a5184f0"
     },
     "com.zigurous.datastructures": {
       "version": "https://github.com/zigurous/unity-data-structures.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "59f93064bc6d299cb73f6e28d21bad18a972ba7e"
+      "hash": "607379902aeaa43b4adf71cef1996ef29357506b"
     },
     "com.zigurous.prototyping": {
       "version": "https://github.com/zigurous/unity-prototyping-kit.git",

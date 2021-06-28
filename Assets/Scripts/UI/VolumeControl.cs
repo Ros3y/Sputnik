@@ -16,14 +16,14 @@ public class VolumeControl : MonoBehaviour
     private void OnEnable()
     {
         volume.value = PlayerPrefs.GetFloat("volume", 1.0f);
-        musicVolume.value = PlayerPrefs.GetFloat("musicVolume", 0.65f);
+        musicVolume.value = PlayerPrefs.GetFloat("musicVolume", 0.75f);
         sfxVolume.value = PlayerPrefs.GetFloat("sfxVolume", 0.85f);   
     }
     private void Start()
     {
         audioMixer.SetFloat("volume", Mathf.Lerp(-80.0f, 0.0f, volume.value));
-        audioMixer.SetFloat("musicVolume", Mathf.Lerp(-80.0f, 0.0f, musicVolume.value));
-        audioMixer.SetFloat("sfxVolume", Mathf.Lerp(-80.0f, 0.0f, sfxVolume.value));
+        audioMixer.SetFloat("musicVolume", Mathf.Lerp(-80.0f, -10.0f, musicVolume.value));
+        audioMixer.SetFloat("sfxVolume", Mathf.Lerp(-80.0f, -5.0f, sfxVolume.value));
     }
     
     public void SetVolume(float volume)
@@ -35,11 +35,11 @@ public class VolumeControl : MonoBehaviour
     public void SetMusicVolume(float volume)
     {
         PlayerPrefs.SetFloat("musicVolume", volume);     
-        audioMixer.SetFloat("musicVolume", Mathf.Lerp(-80.0f, 0.0f, volume));
+        audioMixer.SetFloat("musicVolume", Mathf.Lerp(-80.0f, -10.0f, volume));
     }
     public void SetSFXVolume(float volume)
     {
         PlayerPrefs.SetFloat("sfxVolume", volume);     
-        audioMixer.SetFloat("sfxVolume", Mathf.Lerp(-80.0f, 0.0f, volume));
+        audioMixer.SetFloat("sfxVolume", Mathf.Lerp(-80.0f, -5.0f, volume));
     }
 }

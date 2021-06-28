@@ -8,9 +8,9 @@ using Zigurous.DataStructures;
 public class GlobalControl : SingletonBehavior<GlobalControl>
 {
     public int currentLevel;
+    public string currentLevelName;
     public float CompletionTime;
     public string lastCompletedScene;
-    public Slider sensitivity;
     public bool playerIsGrounded;
     public bool isDead;
 }

@@ -2,97 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zigurous.Tweening;
 
 public class Music : MonoBehaviour
 {
     public AudioClip[] songs;
     private float _sceneIndex;
-    private AudioSource _audioSource;
+    public AudioSource audioSource { get; private set; }
 
     private void Awake()
     {
         _sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        _audioSource = this.GetComponent<AudioSource>();
-        SongSelection();
-        _audioSource.Play();
+        audioSource = this.GetComponent<AudioSource>();
     }
 
-    private void SongSelection()
+    private void Start()
     {
-        switch(_sceneIndex)
-        {
-            case 0:
-            _audioSource.clip = songs[0];
-            break;
+        PlayRandomSong();
+    }
 
-            case 1:
-            _audioSource.clip = songs[1];
-            break;
-
-            case 2:
-            _audioSource.clip = songs[2];
-            break;
-
-            case 3:
-            _audioSource.clip = songs[3];
-            break;
-
-            case 4:
-            _audioSource.clip = songs[4];
-            break;
-
-            case 5:
-            _audioSource.clip = songs[5];
-            break;
-
-            case 6:
-            _audioSource.clip = songs[6];
-            break;
-
-            case 7:
-            _audioSource.clip = songs[7];
-            break;
-
-            case 8:
-            _audioSource.clip = songs[8];
-            break;
-
-            case 9:
-            _audioSource.clip = songs[9];
-            break;
-
-            case 10:
-            _audioSource.clip = songs[10];
-            break;
-
-            case 11:
-            _audioSource.clip = songs[11];
-            break;
-
-            case 12:
-            _audioSource.clip = songs[12];
-            break;
-
-            case 13:
-            _audioSource.clip = songs[13];
-            break;
-
-            case 14:
-            _audioSource.clip = songs[14];
-            break;
-
-             case 15:
-            _audioSource.clip = songs[15];
-            break;
-
-             case 16:
-            _audioSource.clip = songs[16];
-            break;
-
-             case 17:
-            _audioSource.clip = songs[17];
-            break;
-
-        }
+    private IEnumerator PlaySong(AudioClip song)
+    {
+        audioSource.clip = song;
+        audioSource.Play();
+        yield return new WaitForSeconds(song.length);
+        PlayRandomSong();
+    }
+    
+    private void PlayRandomSong()
+    {
+        int randomSong = Random.Range(0,6);
+        audioSource.volume = 0.0f;
+        audioSource.TweenVolume(1.0f, 1.0f);
+        StartCoroutine(PlaySong(songs[randomSong]));
     }
 }

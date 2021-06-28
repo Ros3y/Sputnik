@@ -6,15 +6,13 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Zigurous.Tweening;
 using Zigurous.CameraSystem;
+using UnityEngine.EventSystems;
 
 public class LevelController : MonoBehaviour
 {
-    private GameObject[] _levelObjects;
-    private Scene _activeScene;
     public float stopWatch { get; private set; }
     public float completionTime { get; private set; }
     private RespawnPlayer _respawnInformation;
-    public CoreTransition core;
     public EndLevel level;
     public InputAction EndLevelInput;
     public InputAction pauseLevelInput;
@@ -22,13 +20,11 @@ public class LevelController : MonoBehaviour
     public bool isPaused { get; private set; }
     private bool _endLevel;
     private CameraController _cameraController;
+    private ControllerNavigation _controllerNavigation;
     
     
     private void Awake()
     {
-        _activeScene = SceneManager.GetActiveScene();
-        _levelObjects =  _activeScene.GetRootGameObjects();
-
         _cameraController = FindObjectOfType<CameraController>();
         
         _respawnInformation = GetComponent<RespawnPlayer>();
@@ -40,6 +36,8 @@ public class LevelController : MonoBehaviour
 
         this.EndLevelInput.performed += OnEndLevel;
         this.pauseLevelInput.performed += OnPauseLevel;
+
+        _controllerNavigation = FindObjectOfType<ControllerNavigation>();
  
     }
 
@@ -48,8 +46,6 @@ public class LevelController : MonoBehaviour
     {
         this.EndLevelInput.Enable();
         this.pauseLevelInput.Enable();
-        // Sensitivity.value = PlayerPrefs.GetFloat("sensitivity", 1.5f);
-
     }
 
     private void OnDisable()
@@ -82,75 +78,75 @@ public class LevelController : MonoBehaviour
         switch(level)
         {
             case 0:
-            SceneManager.LoadScene("Menu Stage");
+            SceneLoader.Instance.StartTransition("Menu Stage");
             break;
             
             case 1:
-            SceneManager.LoadScene("The Gap");
+            SceneLoader.Instance.StartTransition("The Gap");
             break;
 
             case 2:
-            SceneManager.LoadScene("The Rise");
+            SceneLoader.Instance.StartTransition("The Rise");
             break;
 
             case 3:
-            SceneManager.LoadScene("Around The Bend");
+            SceneLoader.Instance.StartTransition("Around The Bend");
             break;
 
             case 4:
-            SceneManager.LoadScene("Hop Skip And A Jump");
+            SceneLoader.Instance.StartTransition("Hop Skip And A Jump");
             break;
 
             case 5:
-            SceneManager.LoadScene("Reflections");
+            SceneLoader.Instance.StartTransition("Reflections");
             break;
 
             case 6:
-            SceneManager.LoadScene("Pillars");
+            SceneLoader.Instance.StartTransition("Pillars");
             break;
             
             case 7:
-            SceneManager.LoadScene("Precision Flying");
+            SceneLoader.Instance.StartTransition("Precision Flying");
             break;
 
             case 8:
-            SceneManager.LoadScene("Pitfall");
+            SceneLoader.Instance.StartTransition("Pitfall");
             break;
 
             case 9:
-            SceneManager.LoadScene("Claustrophobia");
+            SceneLoader.Instance.StartTransition("Claustrophobia");
             break;
 
             case 10:
-            SceneManager.LoadScene("Back and Forth");
+            SceneLoader.Instance.StartTransition("Back and Forth");
             break;
 
             case 11:
-            SceneManager.LoadScene("Going Up");
+            SceneLoader.Instance.StartTransition("Going Up");
             break;
 
             case 12:
-            SceneManager.LoadScene("Sheer Cliff");
+            SceneLoader.Instance.StartTransition("Sheer Cliff");
             break;
 
             case 13:
-            SceneManager.LoadScene("Pinball");
+            SceneLoader.Instance.StartTransition("Pinball");
             break;
 
             case 14:
-            SceneManager.LoadScene("Over and Under");
+            SceneLoader.Instance.StartTransition("Over and Under");
             break;
 
             case 15:
-            SceneManager.LoadScene("Ahead of the Curve");
+            SceneLoader.Instance.StartTransition("Ahead of the Curve");
             break;
 
             case 16:
-            SceneManager.LoadScene("Peak Performance");
+            SceneLoader.Instance.StartTransition("Peak Performance");
             break;
 
             case 17:
-            SceneManager.LoadScene("Demo End");
+            SceneLoader.Instance.StartTransition("Demo End");
             break;
 
         }
@@ -159,22 +155,25 @@ public class LevelController : MonoBehaviour
 
     private void OnEndLevel(InputAction.CallbackContext context)
     {
+        Scene activeScene = SceneManager.GetActiveScene();
+        
         if(level.canEnd)
         {
+            EndLevelInput.Disable();
             _endLevel = true;
 
             GlobalControl.Instance.CompletionTime = this.stopWatch;
 
-            if(this.stopWatch < PlayerPrefs.GetFloat(_activeScene.name, float.MaxValue))
+            if(this.stopWatch < PlayerPrefs.GetFloat(activeScene.name, float.MaxValue))
             {
-                PlayerPrefs.SetFloat(_activeScene.name, this.stopWatch);
+                PlayerPrefs.SetFloat(activeScene.name, this.stopWatch);
                 PlayerPrefs.Save();  
             }
             
 
-            GlobalControl.Instance.lastCompletedScene = _activeScene.name;
+            GlobalControl.Instance.lastCompletedScene = activeScene.name;
             
-            SceneManager.LoadScene("Level Complete Stage");
+            SceneLoader.Instance.StartTransition("Level Complete Stage");
         }
     }
     private void OnPauseLevel(InputAction.CallbackContext context)
@@ -199,6 +198,9 @@ public class LevelController : MonoBehaviour
             AudioListener.pause = true;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
+
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_controllerNavigation.pauseMenuFirst);
         }
     }
 

@@ -107,70 +107,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   look:
-    input:
-      m_Name: CameraLook
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: cc29f807-e95e-4e5d-9c7e-e1353a11614d
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 598447c2-3c7e-4c64-aaaa-487a8d7f7697
-        m_Path: <Mouse>/delta
-        m_Interactions: 
-        m_Processors: scaleVector2(x=0.05,y=0.05)
-        m_Groups: 
-        m_Action: CameraLook
-        m_Flags: 0
-      - m_Name: 
-        m_Id: 1c0bac31-c3c5-4b7c-a738-46951ce27737
-        m_Path: 2DVector(mode=2)
-        m_Interactions: 
-        m_Processors: ScaleVector2,stickDeadzone
-        m_Groups: 
-        m_Action: CameraLook
-        m_Flags: 4
-      - m_Name: Up
-        m_Id: 375697c5-b45e-44a5-9d18-489f936d6aba
-        m_Path: <Gamepad>/rightStick/up
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: CameraLook
-        m_Flags: 8
-      - m_Name: Down
-        m_Id: e72f26cb-4d4d-4de7-a82d-8657b9d7263c
-        m_Path: <Gamepad>/rightStick/down
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: CameraLook
-        m_Flags: 8
-      - m_Name: Left
-        m_Id: d7ad62a1-24f7-4b70-9687-b4a4a489339c
-        m_Path: <Gamepad>/rightStick/left
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: CameraLook
-        m_Flags: 8
-      - m_Name: Right
-        m_Id: a9b158d5-642b-49f4-a552-f0dc1f938403
-        m_Path: <Gamepad>/rightStick/right
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: CameraLook
-        m_Flags: 8
     sensitivity: {x: 1, y: 1}
     orbit: {x: 0, y: 0}
     minRange: {x: -Infinity, y: -80}
     maxRange: {x: Infinity, y: 80}
     enabled: 1
-    smoothing:
-      _frames: 30
-      enabled: 0
   pivot:
     _distance: 6
     _minDistance: 6
@@ -182,7 +123,7 @@ MonoBehaviour:
     maxSpeed: Infinity
     enabled: 1
     detached: 0
-  _collision:
+  collision:
     layerMask:
       serializedVersion: 2
       m_Bits: 1
@@ -191,7 +132,7 @@ MonoBehaviour:
     dampingWhenOccluded: 0.1
     minOcclusionDistance: 1
     enabled: 1
-    drawDebugLines: 0
+    debug: 0
   cursor:
     _lockState: 1
     _visible: 0

@@ -31,7 +31,7 @@ public class PulsingMaterial : Pulsing
 
     protected virtual void Delay()
     {
-        Invoke(nameof(Transition), 2.1f);
+        Invoke(nameof(Transition), 0.5f);
     }
 
     private void Transition()

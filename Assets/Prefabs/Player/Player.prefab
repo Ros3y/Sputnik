@@ -298,7 +298,6 @@ MonoBehaviour:
   jetpackConstantForce: 3.25
   fuelDecrementMultiplier: 115
   fuelIncrementMultiplier: 115
-  rechargeDelay: 0
   rocketFlame1: {fileID: 2991230956157061014}
   rocketFlame2: {fileID: 6258996523965537817}
   rocketFlame3: {fileID: 3841788173724339339}
@@ -470,7 +469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 368c1f3ae8331174094980eb025f0da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  core: {fileID: 0}
   level: {fileID: 0}
   EndLevelInput:
     m_Name: End Level Input

@@ -9723,17 +9723,17 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 0.61423874
-      inSlope: -0.61423874
-      outSlope: -0.61423874
+      inSlope: -0.423275
+      outSlope: -0.423275
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: -0.61423874
-      outSlope: -0.61423874
+      value: 0.19096375
+      inSlope: -0.423275
+      outSlope: -0.423275
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

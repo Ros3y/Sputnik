@@ -76,7 +76,10 @@ public class GrenadeBehavior : Destructible
                 _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
                 _hasImpacted = true;
                 _audioSource.PlayOneShot(this.grenadeImpactSound);
-                _hitmarker.enabled = true;
+                if(_hitmarker != null)
+                {
+                    _hitmarker.enabled = true;
+                }
                 Invoke(nameof(playGrenadeTimer), 0.3f);
 
 

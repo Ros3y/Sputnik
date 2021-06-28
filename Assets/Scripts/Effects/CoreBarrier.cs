@@ -5,7 +5,6 @@ using Zigurous.Tweening;
 
 public class CoreBarrier : PulsingMaterial
 {
-   
    protected override void Delay()
    {
         Shrink();

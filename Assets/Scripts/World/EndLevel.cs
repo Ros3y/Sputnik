@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class EndLevel : MonoBehaviour
 {
@@ -19,6 +20,20 @@ public class EndLevel : MonoBehaviour
         _collider.enabled = false;
     }
 
+    private void Update()
+    {
+        if(Mouse.current != null && Mouse.current.wasUpdatedThisFrame)
+            {
+                endPrompt.text = "Press E to End";
+            }
+
+        else if(Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame)
+        {
+            string button = Gamepad.current.buttonWest.shortDisplayName;
+            endPrompt.text = "Press " + button + " to End";
+        }   
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player" && core.hasTransitioned == true)
@@ -27,6 +42,7 @@ public class EndLevel : MonoBehaviour
             endPrompt.enabled = true;
         }
     }
+    
 
     private void OnTriggerExit(Collider other)
     {
