@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0df39ccf3bca6b429d6006a7e374502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splashCamera: {fileID: 250798237}
 --- !u!1 &250798235
 GameObject:
   m_ObjectHideFlags: 0

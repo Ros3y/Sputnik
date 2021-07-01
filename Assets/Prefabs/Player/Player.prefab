@@ -189,7 +189,7 @@ MonoBehaviour:
       m_Flags: 0
     - m_Name: 
       m_Id: 41e7b649-b9a1-447f-bb93-9b90653c030e
-      m_Path: <XInputController>/buttonSouth
+      m_Path: <Gamepad>/buttonSouth
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -338,6 +338,22 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Respawn Player Input
       m_Flags: 0
+    - m_Name: 
+      m_Id: c988b015-d70f-4db3-a215-92cec2bafa79
+      m_Path: <Gamepad>/rightShoulder
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Respawn Player Input
+      m_Flags: 0
+    - m_Name: 
+      m_Id: a8ba39d1-f32e-4709-9d3d-3563484c3947
+      m_Path: <Gamepad>/buttonNorth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Respawn Player Input
+      m_Flags: 0
   deathEffectPosition: {fileID: 0}
   respawnDelay: 1
   respawnEffect: {fileID: 0}
@@ -382,9 +398,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 2
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -392,23 +408,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.1
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: -0.43789336
+      outSlope: -0.43789336
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      value: 0.605896
+      inSlope: -0.43789336
+      outSlope: -0.43789336
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -513,6 +529,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: 4fd6f0ad-90ba-4f40-842c-0aea72cffbe5
       m_Path: <Gamepad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause Level Input
+      m_Flags: 0
+    - m_Name: 
+      m_Id: cfe9022b-03cd-4f1c-8bfc-7709af1334cf
+      m_Path: <Keyboard>/p
       m_Interactions: 
       m_Processors: 
       m_Groups: 

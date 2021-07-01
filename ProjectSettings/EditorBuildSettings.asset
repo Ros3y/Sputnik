@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/Preload.unity
     guid: 8dd5dc549021e5346bcadaba1caa623b
   - enabled: 1
-    path: Assets/Scenes/Menus/Splash Screen.unity
-    guid: 0f02cdc63e902454481e536d80107faa
-  - enabled: 1
     path: Assets/Scenes/Menus/Menu Stage.unity
     guid: 9c06cf78de57be944a5ae7ac05d68e68
   - enabled: 1

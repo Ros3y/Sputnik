@@ -10,7 +10,8 @@ public class EndLevel : MonoBehaviour
     private CoreTransition core;
     public bool canEnd { get; private set; }
     public Text endPrompt;
-    private Collider _collider; 
+    private Collider _collider;
+    private bool _gamepadeActive; 
     private void Awake()
     {
         core = FindObjectOfType<CoreTransition>();
@@ -22,12 +23,27 @@ public class EndLevel : MonoBehaviour
 
     private void Update()
     {
-        if(Mouse.current != null && Mouse.current.wasUpdatedThisFrame)
+        if(_gamepadeActive)
+        {
+            if(Mouse.current != null && Mouse.current.wasUpdatedThisFrame)
             {
-                endPrompt.text = "Press E to End";
+                _gamepadeActive = false;
+                
             }
-
-        else if(Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame)
+        }
+        else
+        {
+            if(Gamepad.current != null && Gamepad.current.leftStick.IsActuated())
+            {
+                _gamepadeActive = true;
+            }
+        }
+        
+        if(!_gamepadeActive)
+        {
+            endPrompt.text = "Press E to End";
+        }
+        else
         {
             string button = Gamepad.current.buttonWest.shortDisplayName;
             endPrompt.text = "Press " + button + " to End";

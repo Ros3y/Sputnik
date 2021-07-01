@@ -2616,7 +2616,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
 --- !u!1 &3304926268298640377
 GameObject:
@@ -3233,6 +3233,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Reticle-Shotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 3400735344719510318, guid: c87726649c55a4049966c799bef2250b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8794349561834956363, guid: c87726649c55a4049966c799bef2250b, type: 3}
       propertyPath: _spread
       value: 48
@@ -3359,6 +3363,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Reticle-Dot-Tiny
       objectReference: {fileID: 0}
+    - target: {fileID: 8625635103684440765, guid: 5a0177dd5f1d8134c9271f35214c3ae6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a0177dd5f1d8134c9271f35214c3ae6, type: 3}
 --- !u!224 &2729907611481993098 stripped
@@ -3465,6 +3473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Reticle-Hitmarker
       objectReference: {fileID: 0}
+    - target: {fileID: 4870114150079526867, guid: 91ac9eba252f32b4391679cd9b76d4d7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4871934487266343563, guid: 91ac9eba252f32b4391679cd9b76d4d7, type: 3}
       propertyPath: _color.a
       value: 0.29411766
@@ -3480,6 +3492,10 @@ PrefabInstance:
     - target: {fileID: 4871934487266343563, guid: 91ac9eba252f32b4391679cd9b76d4d7, type: 3}
       propertyPath: _color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871934487266343563, guid: 91ac9eba252f32b4391679cd9b76d4d7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91ac9eba252f32b4391679cd9b76d4d7, type: 3}

@@ -199,8 +199,11 @@ public class LevelController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
 
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(_controllerNavigation.pauseMenuFirst);
+            if(EventSystem.current != null)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(_controllerNavigation.pauseMenuFirst);
+            }
         }
     }
 

@@ -8,6 +8,7 @@ public class SplashScreen : MonoBehaviour
 {
     private CanvasGroup canvas;
     private AsyncOperation loadInformation;
+    public Camera splashCamera;
 
     private void Start()
     {
@@ -27,6 +28,8 @@ public class SplashScreen : MonoBehaviour
 
     private void transitionScene()
     {
+        Destroy(splashCamera);
+
         loadInformation.allowSceneActivation = true;
         canvas.gameObject.SetActive(false);
         StartCoroutine(SetActiveSceneWhenReady());   

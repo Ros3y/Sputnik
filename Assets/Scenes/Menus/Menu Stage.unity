@@ -16778,7 +16778,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
 --- !u!114 &1872783773
 MonoBehaviour:
@@ -18523,6 +18523,10 @@ PrefabInstance:
     - target: {fileID: 6610887574886639448, guid: 94d98b2e0864d4a43b76e7fc0f61909b, type: 3}
       propertyPath: m_Name
       value: Post Processing
+      objectReference: {fileID: 0}
+    - target: {fileID: 6610887574886639448, guid: 94d98b2e0864d4a43b76e7fc0f61909b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6610887574886639449, guid: 94d98b2e0864d4a43b76e7fc0f61909b, type: 3}
       propertyPath: m_RootOrder

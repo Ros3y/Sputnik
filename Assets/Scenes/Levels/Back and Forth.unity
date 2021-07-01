@@ -2642,11 +2642,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dab3f7e5c48612e4d9cf03ddd43fd9ee, type: 3}
---- !u!4 &516240857 stripped
+--- !u!4 &516240857
 Transform:
-  m_CorrespondingSourceObject: {fileID: 6862761303513852411, guid: dab3f7e5c48612e4d9cf03ddd43fd9ee, type: 3}
-  m_PrefabInstance: {fileID: 516240856}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534884044}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1642979002}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &528891600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7385,18 +7394,6 @@ PrefabInstance:
       propertyPath: rocketFlame3
       value: 
       objectReference: {fileID: 1657073894}
-    - target: {fileID: 9095632139527623758, guid: 432b238255b63344095f3000f797fca2, type: 3}
-      propertyPath: jetpackConstantForce
-      value: 3.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 9095632139527623758, guid: 432b238255b63344095f3000f797fca2, type: 3}
-      propertyPath: fuelDecrementMultiplier
-      value: 115
-      objectReference: {fileID: 0}
-    - target: {fileID: 9095632139527623758, guid: 432b238255b63344095f3000f797fca2, type: 3}
-      propertyPath: fuelIncrementMultiplier
-      value: 115
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 432b238255b63344095f3000f797fca2, type: 3}
 --- !u!4 &1491456422 stripped
@@ -7510,6 +7507,22 @@ Transform:
   m_Father: {fileID: 1179061806}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1534884044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 516240857}
+  m_Layer: 0
+  m_Name: Level Name (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1535790269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8041,6 +8054,7 @@ Transform:
   - {fileID: 236929629}
   - {fileID: 302302863}
   - {fileID: 206985855}
+  - {fileID: 2051241818}
   - {fileID: 516240857}
   m_Father: {fileID: 0}
   m_RootOrder: 13
@@ -9095,6 +9109,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9aa2b7df6bcc3b4cb75e4ba681c5360, type: 3}
+--- !u!1 &2051241817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2051241818}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2051241818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 6862761303513852411, guid: dab3f7e5c48612e4d9cf03ddd43fd9ee, type: 3}
+  m_PrefabInstance: {fileID: 516240856}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051241817}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1642979002}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2069364901
 PrefabInstance:
   m_ObjectHideFlags: 0
